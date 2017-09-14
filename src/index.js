@@ -9,15 +9,15 @@ if (process.env.NODE_ENV !== 'production') {
   console.log('Looks like we are in development mode!');
 }
 
-let
-  store = createStore(app),
-  rootEl;
-
-if ( !( rootEl = document.getElementById('root') ) ) {
-  rootEl = document.createElement('div');
-  rootEl.id = 'root';
-  document.body.appendChild(rootEl);
+const initialStore = {
+  user: {
+    email: 'johnsmitn@mail.com'
+  }
 }
+
+let store = createStore(app),
+  rootEl = document.getElementById('root');
+
 
 ReactDOM.render(
   <Provider store={store}>

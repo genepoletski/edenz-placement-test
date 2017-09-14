@@ -7,7 +7,7 @@ const config = {
     main: './src/index.js'
   },
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: '[name].[hash].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
@@ -32,7 +32,8 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'bp-react-redux'
+      title: 'EDENZ Colleges Placement Test',
+      template: './src/index.template.ejs'
     })
   ]
 }

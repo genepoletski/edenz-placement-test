@@ -1,6 +1,7 @@
 import {
   ADD_STUDENT,
   FETCH_TEST,
+  SAVE_TEST,
   UPDATE_STUDENT
 } from './actionTypes';
 
@@ -22,5 +23,12 @@ export const fetchTest = id => {
   return {
     type: FETCH_TEST,
     payload: id
+  }
+}
+
+export const saveTest = (id, data) => {
+  return {
+    type: SAVE_TEST,
+    payload: data
   }
 }
