@@ -1,23 +1,17 @@
-import {
-  USER_TYPE_STUDENT
-} from '../constants';
-
-import {
-  ADD_STUDENT,
-  UPDATE_STUDENT
-} from '../actions/actionTypes';
+import constants from '../constants';
+import types from '../actions/actionTypes';
 
 const user = (state = {}, action) => {
   switch(action.type) {
-    case ADD_STUDENT:
+    case types.ADD_STUDENT:
       return Object.assign(
         {},
         {
-          type: USER_TYPE_STUDENT
+          type: constants.USER_TYPE_STUDENT
         },
         action.payload
       );
-    case UPDATE_STUDENT:
+    case types.UPDATE_STUDENT:
       return Object.assign(
         {},
         state,

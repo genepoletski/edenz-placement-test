@@ -1,4 +1,16 @@
-export const ADD_STUDENT = 'ADD_STUDENT';
-export const FETCH_TEST = 'FETCH_TEST';
-export const SAVE_TEST = 'SAVE_TEST';
-export const UPDATE_STUDENT = 'UPDATE_STUDENT';
+const typeNames = [
+  'ADD_STUDENT',
+  'FETCH_TEST',
+  'SAVE_TEST',
+  'SHOW_TEST_PAGE',
+  'SUBMIT_STUDENT',
+  'UPDATE_STUDENT'
+]
+
+const types = {};
+
+typeNames.forEach( typeName => {
+  types[typeName] = typeName;
+});
+
+export default types;

@@ -1,8 +1,6 @@
 import user from './user';
 
-import {
-  USER_TYPE_STUDENT
-} from '../constants';
+import constants from '../constants';
 
 import {
   addStudent,
@@ -50,7 +48,7 @@ describe('Reducers: user', () => {
       )
     )
     .toEqual({
-      type: USER_TYPE_STUDENT,
+      type: constants.USER_TYPE_STUDENT,
       name: 'John Smith',
       email: 'johnsmith@mail.com'
     });
@@ -60,7 +58,7 @@ describe('Reducers: user', () => {
     expect(
       user(
         {
-          type: USER_TYPE_STUDENT,
+          type: constants.USER_TYPE_STUDENT,
           name: 'John Smith',
           email: 'jonsmith@mail.com'
         },
@@ -70,7 +68,7 @@ describe('Reducers: user', () => {
       )
     )
     .toEqual({
-      type: USER_TYPE_STUDENT,
+      type: constants.USER_TYPE_STUDENT,
       name: 'John Smith',
       email: 'johnsmith@mail.com'
     });

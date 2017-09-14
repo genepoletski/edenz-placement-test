@@ -68,7 +68,7 @@ class Login extends Component {
           type="submit"
           className={buttonClassName}
           onClick={()=>{console.log(1);}}>
-          Login
+          Submit
         </button>
   
       </form>

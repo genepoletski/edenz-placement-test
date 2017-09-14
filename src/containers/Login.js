@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import {
   addStudent,
+  submitStudent,
   updateStudent
 } from '../actions';
 
@@ -15,16 +16,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddStudent: personalInfo => {
-      dispatch(
-        addStudent({
-          name: 'John Smith',
-          email: 'johnsmith@mail.com'
-        })
-      )
+    onAddStudent: data => {
+      dispatch(addStudent(data));
     },
-    onUpdateStudent: studentInfo => {
-      dispatch(updateStudent(studentInfo));
+    onSubmitStudent: () => {
+      dispatch(submitStudent());
+    },
+    onUpdateStudent: data => {
+      dispatch(updateStudent(data));
     }
   }
 }
