@@ -1,24 +1,26 @@
 import {
   ADD_STUDENT,
-  FETCH_TEST
+  FETCH_TEST,
+  UPDATE_STUDENT
 } from './actionTypes';
 
 export const addStudent = payload => {
   return {
     type: ADD_STUDENT,
-    payload: {
-      name: payload.name,
-      email: payload.email,
-      password: payload.password
-    }
+    payload
   }
 }
 
-export const fetchTest = payload => {
+export const updateStudent = payload => {
+  return {
+    type: UPDATE_STUDENT,
+    payload
+  }
+}
+
+export const fetchTest = id => {
   return {
     type: FETCH_TEST,
-    payload: {
-      id: payload.id
-    }
+    payload: id
   }
 }

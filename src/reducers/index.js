@@ -7,8 +7,7 @@ const initialState = {
   user: {
     type: '',
     name: '',
-    email: '',
-    password: ''
+    email: ''
   },
   test: {
     id: ''
