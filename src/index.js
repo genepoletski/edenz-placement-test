@@ -5,19 +5,20 @@ import { createStore } from 'redux';
 import app from './reducers';
 import App from './App';
 
+let
+  rootEl = document.getElementById('root'),
+  store;
+
 if (process.env.NODE_ENV !== 'production') {
-  console.log('Looks like we are in development mode!');
+  console.warn(' --->>> DEVELOPMENT MODE <<< -----');
+  store = createStore(
+    app,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 }
-
-const initialStore = {
-  user: {
-    email: 'johnsmitn@mail.com'
-  }
+else {
+  store = createStore(app)
 }
-
-let store = createStore(app),
-  rootEl = document.getElementById('root');
-
 
 ReactDOM.render(
   <Provider store={store}>

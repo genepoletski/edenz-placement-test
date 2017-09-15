@@ -3,6 +3,7 @@ import './App.css';
 import '../node_modules/purecss/build/pure-min.css';
 
 import Login from './containers/Login';
+import Tests from './components/Tests';
 
 let Page = Login;
 
@@ -20,6 +21,5 @@ const App = props => {
     </div>
   );
 }
-
 
 export default App;
