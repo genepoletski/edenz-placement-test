@@ -1,16 +1,16 @@
-// import {
-//   ADD_STUDENT,
-//   FETCH_TEST,
-//   SAVE_TEST,
-//   SUBMIT_STUDENT,
-//   UPDATE_STUDENT
-// } from './actionTypes';
 import types from './actionTypes';
 
 export const addStudent = payload => {
   return {
     type: types.ADD_STUDENT,
     payload
+  }
+}
+
+export const setCurrentPage = pageName => {
+  return {
+    type: types.SET_CURRENT_PAGE,
+    payload: pageName
   }
 }
 

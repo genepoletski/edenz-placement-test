@@ -1,24 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import store from './store';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import app from './reducers';
 import App from './App';
 
-let
-  rootEl = document.getElementById('root'),
-  store;
-
-if (process.env.NODE_ENV !== 'production') {
-  console.warn(' --->>> DEVELOPMENT MODE <<< -----');
-  store = createStore(
-    app,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-}
-else {
-  store = createStore(app)
-}
+let rootEl = document.getElementById('root');
 
 ReactDOM.render(
   <Provider store={store}>

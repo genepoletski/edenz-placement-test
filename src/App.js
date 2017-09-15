@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import '../node_modules/purecss/build/pure-min.css';
 
 import Login from './containers/Login';
 import Tests from './components/Tests';
 
-let Page = Login;
+const mapStateToProps = state => {
+  return { currentPage: state.pages.currentPage }
+}
 
-const App = props => {
+let App = props => {
+  let Page;
+
+  switch (props.currentPage) {
+    case 'Login':
+      Page = Login;
+      break;
+    case 'Tests':
+      Page = Tests;
+      break;
+    default:
+      Page = Login;
+  }
+
   return (
     <div className='pure-g'>
       <div className='pure-u-1'>
@@ -21,5 +37,7 @@ const App = props => {
     </div>
   );
 }
+
+App = connect(mapStateToProps)(App);
 
 export default App;

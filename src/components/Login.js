@@ -6,14 +6,16 @@ class Login extends Component {
     super(props);
     this.state = {
       email: props.user.email || '',
-      name: props.user.name || ''
+      name: props.user.name || '',
+      isLogged: props.user.isLogged || false
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       email: nextProps.user.email || '',
-      name: nextProps.user.name || ''
+      name: nextProps.user.name || '',
+      isLogged: nextProps.user.isLogged || false
     });
   }
 
@@ -23,6 +25,11 @@ class Login extends Component {
 
   handleNameChange(evt) {
     this.props.onUpdateStudent({ name: evt.target.value });
+  }
+
+  handleUserSubmit(evt) {
+    evt.preventDefault();
+    this.props.onSubmitStudent();
   }
 
   isValidEmail(email) {
@@ -67,8 +74,8 @@ class Login extends Component {
         <button
           type="submit"
           className={buttonClassName}
-          onClick={()=>{console.log(1);}}>
-          Submit
+          onClick={evt => this.handleUserSubmit(evt)}>
+          {this.state.isLogged ? 'Continue' : 'Login'}
         </button>
   
       </form>

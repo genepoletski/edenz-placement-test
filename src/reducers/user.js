@@ -6,10 +6,14 @@ const user = (state = {}, action) => {
     case types.ADD_STUDENT:
       return Object.assign(
         {},
-        {
-          type: constants.USER_TYPE_STUDENT
-        },
+        { type: constants.USER_TYPE_STUDENT },
         action.payload
+      );
+    case types.SUBMIT_STUDENT:
+      return Object.assign(
+        {},
+        state,
+        { isLogged: true }
       );
     case types.UPDATE_STUDENT:
       return Object.assign(

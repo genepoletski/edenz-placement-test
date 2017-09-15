@@ -1,5 +1,4 @@
 import user from './user';
-
 import constants from '../constants';
 
 import {
