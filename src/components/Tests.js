@@ -1,21 +1,75 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import GrammarTest from './GrammarTest';
+import ListeningTest from './ListeningTest';
 
-const Tests = props => {
-  return (
-    <div>
+class Tests extends Component {
+  componentWillReceiveProps(nextProps) {    
+    if (!nextProps.tests[ nextProps.currentTestId ] && nextProps.currentTestId) {
+      this.props.fetchTest( nextProps.currentTestId );
+    }
+  }
 
-      <button
-        className="pure-u-1 pure-button pure-button-primary">
-        Grammar Test
-      </button>
+  onClickTest(evt) {
+    const
+      props = this.props,
+      requestedTestId = evt.target.id;
+    
+    evt.preventDefault();
+    if (requestedTestId !== props.currentTestId && !props.isStarted) {
+      props.setCurrentTest(requestedTestId);
+    }
+  }
+  
+  render() {
+    const props = this.props;
+    
+    let Test;
+    
+    switch (props.currentTestId) {
+      case '1':
+        Test = GrammarTest;
+        break;
+      case '2':
+        Test = ListeningTest;
+        break;
+      default:
+        Test = null;
+        break;
+    }
 
-      <button
-        className="pure-u-1 pure-button pure-button-primary">
-        Listening Test
-      </button>
+    if (props.currentTestId) {
+      return (
+        <div><Test {...props.tests[props.currentTestId]} /></div>
+      );
+    }
 
-    </div>
-  );
+    return (
+      <div>
+  
+        <button
+          id='1'
+          className='pure-u-1 pure-button pure-button-primary'
+          onClick={(evt)=>{this.onClickTest(evt)}}>
+          Grammar Test
+        </button>
+  
+        <button
+          id="2"
+          className='pure-u-1 pure-button pure-button-primary'
+          onClick={(evt)=>{this.onClickTest(evt)}}>
+          Listening Test
+        </button>
+  
+      </div>
+    );
+  }
+  
+}
+
+Tests.propTypes = {
+  currentTestId: PropTypes.string.isRequired,
+  isStarted: PropTypes.bool.isRequired
 }
 
 export default Tests;

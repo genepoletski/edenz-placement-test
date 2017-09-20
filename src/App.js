@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './App.css';
 import '../node_modules/purecss/build/pure-min.css';
 
 import Login from './containers/Login';
-import Tests from './components/Tests';
+import Tests from './containers/Tests';
 
 const mapStateToProps = state => {
   return { currentPage: state.pages.currentPage }
@@ -36,6 +37,10 @@ let App = props => {
 
     </div>
   );
+}
+
+App.propTypes = {
+  currentPage: PropTypes.string.isRequired
 }
 
 App = connect(mapStateToProps)(App);

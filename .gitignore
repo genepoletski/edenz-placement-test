@@ -1,6 +1,9 @@
 # dependencies
 /node_modules
 
+# legacy
+/server_app/legacy
+
 # production
 /dist
 

@@ -7,6 +7,7 @@ const currentPageNameUpdater = store => next => action => {
       store.dispatch(setCurrentPage('Tests'));
       break;
     default:
+      break;
   }
   return next(action);
 }

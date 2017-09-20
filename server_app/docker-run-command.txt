@@ -1,0 +1,7 @@
+# Run container initially
+docker run -d -p 3000:80 --name edenz-placement-test -v "$PWD":/var/www/html php:7.0-apache /bin/bash -c 'a2enmod rewrite; apache2-foreground'
+
+# Run container after machine boot up
+docker container start <CONTAINER_ID>
+
+docker run -dit --restart unless-stopped -p 3000:80 --name edenz-placement-test -v "$PWD":/var/www/html php:7.0-apache /bin/bash -c 'a2enmod rewrite; apache2-foreground'

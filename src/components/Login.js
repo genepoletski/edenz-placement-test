@@ -5,17 +5,17 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: props.user.email || '',
-      name: props.user.name || '',
-      isLogged: props.user.isLogged || false
+      email: props.user.email,
+      name: props.user.name,
+      isLogged: props.user.isLogged
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      email: nextProps.user.email || '',
-      name: nextProps.user.name || '',
-      isLogged: nextProps.user.isLogged || false
+      email: nextProps.user.email,
+      name: nextProps.user.name,
+      isLogged: nextProps.user.isLogged
     });
   }
 
@@ -86,8 +86,9 @@ class Login extends Component {
 Login.propTypes = {
   onUpdateStudent: PropTypes.func.isRequired,
   user: PropTypes.shape({
-    email: PropTypes.string,
-    name: PropTypes.string
+    email: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    isLogged: PropTypes.bool.isRequired
   })
 }
 

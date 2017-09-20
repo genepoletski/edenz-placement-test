@@ -18,7 +18,9 @@ const config = merge(
       },
       port: 8080,
       proxy: {
-        '/api': 'http://localhost:3000'
+        '/api': 'http://localhost:3000',
+        secure: false,
+        changeOrigin: true
       }
     },
     module: {
