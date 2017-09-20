@@ -52,10 +52,13 @@ describe('Reducers: tests', () => {
         {
           type: types.RECEIVE_TEST,
           payload: {
-            '1': {
-              'text': 'What is ...',
-              options: {
-                'a': 'well'
+            id: '1',
+            test: {
+              '1': {
+                'text': 'What is ...',
+                options: {
+                  'a': 'well'
+                }
               }
             }
           }

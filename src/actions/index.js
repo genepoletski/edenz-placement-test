@@ -13,11 +13,16 @@ export const fetchTest = id => {
     dispatch( requestTest(id) );
     return fetch('/api/test/1')
       .then(
-        response => response.json,
+        response => response.json(),
         error => console.log('An error occured: ', error)
       )
       .then(
-        json => dispatch( receiveTest( json ) )
+        json => dispatch(
+          receiveTest({
+            id,
+            test: json,
+          })
+        )
       )
   }
 }

@@ -7,7 +7,14 @@ const tests = (state = {}, action) => {
         {},
         state,
         {
-          
+          [action.payload.id]: Object.assign(
+            {},
+            state[action.payload.id],
+            {
+              isFetching: false,
+              test: action.payload.test
+            }
+          )
         }
       );
     case types.REQUEST_TEST:
