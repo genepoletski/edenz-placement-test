@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Question from './Question';
 
 const Questions = props => {
   const questions = [];
+
+  let
+    key = 0,
+    questionId;
   
-  for (let id in props.questions) {
-    questions.push(<div key={id}>{props.questions[id].text}</div>)
+  for (questionId in props.questions) {
+    key++;
+    questions.push( <Question key={key} number={String(key)} {...props.questions[questionId]} /> );
   }
 
   return (

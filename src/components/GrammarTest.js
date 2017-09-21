@@ -10,9 +10,14 @@ const GrammarTest = props => {
   }
 
   return (
-    <div>
+    <form>
       { props.test ? <Questions questions={props.test} /> : '' }
-    </div>
+      <div>
+        <span><span>45</span> left</span>
+        <span>eye</span>
+        <button>submit</button>
+      </div>
+    </form>
   );
 }
 
