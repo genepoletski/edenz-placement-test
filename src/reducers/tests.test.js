@@ -112,4 +112,50 @@ describe('Reducers: tests', () => {
     })
   });
 
+  it('should store selected answer properly', () => {
+    expect(
+      tests(
+        {
+          '1': {
+            isFetching: false,
+            isComplete: true,
+            questions: {}
+          },
+          '2': {
+            isFetching: false,
+            isComplete: false,
+            questions: {},
+            answers: {
+              '1': 'a'
+            }
+          }
+        },
+        {
+          type: types.SET_ANSWER,
+          payload: {
+            testId: '2',
+            questionId: '2',
+            answerId: 'b'
+          }
+        }
+      )
+    )
+    .toEqual({
+      '1': {
+        isFetching: false,
+        isComplete: true,
+        questions: {}
+      },
+      '2': {
+        isFetching: false,
+        isComplete: false,
+        questions: {},
+        answers: {
+          '1': 'a',
+          '2': 'b'
+        }
+      }
+    })
+  });
+
 });

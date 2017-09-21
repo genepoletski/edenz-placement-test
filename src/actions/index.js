@@ -42,6 +42,17 @@ export const requestTest = id => {
   }
 }
 
+export const setAnswer = (testId, questionId, answerId) => {
+  return {
+    type: types.SET_ANSWER,
+    payload: {
+      testId,
+      questionId,
+      answerId
+    }
+  }
+}
+
 export const setCurrentPage = pageName => {
   return {
     type: types.SET_CURRENT_PAGE,

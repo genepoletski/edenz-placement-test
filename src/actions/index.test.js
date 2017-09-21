@@ -4,10 +4,25 @@ import {
   fetchTest,
   receiveTest,
   requestTest,
+  setAnswer,
   setCurrentTest
 } from './index';
 
-describe('Action Creators', () => {
+describe('Action Creators:', () => {
+
+  it('setAnswer() should create action properly', () => {
+    expect(
+      setAnswer('1', '1', 'a')
+    )
+    .toEqual({
+      type: types.SET_ANSWER,
+      payload: {
+        testId: '1',
+        questionId: '1',
+        answerId: 'a'
+      }
+    })
+  });
   
   it('setCurrentTest() should create action properly', () => {
     expect(

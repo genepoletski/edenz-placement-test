@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 
 import {
   fetchTest,
+  setAnswer,
   setCurrentTest
 } from '../actions';
 
@@ -18,6 +19,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchTest: testId => dispatch( fetchTest(testId) ),
+    onSetAnswer: (testId, questionId, answerId) => {dispatch(
+      setAnswer(testId, questionId, answerId)
+    )},
     setCurrentTest: testId => dispatch( setCurrentTest(testId) )
   }
 };

@@ -5,14 +5,17 @@ const Options = props => {
   const options = [];
 
   let
-    key = 0,
-    optionId;
+    key = 0;
 
-  for (optionId in props.options) {
+  for (let optionId in props.options) {
     key++;
     options.push(
       <label key={key}>
-        <input name={props.questionNumber} type='radio'/>{props.options[optionId]}
+        <input
+          name={props.questionNumber}
+          onClick={()=>{props.onSetAnswer(optionId);}}
+          type='radio'/>
+          {props.options[optionId]}
       </label>
     );
   }
@@ -23,8 +26,9 @@ const Options = props => {
 }
 
 Options.propTypes = {
-  questionNumber: PropTypes.string.isRequired,
-  options: PropTypes.object.isRequired
+  onSetAnswer: PropTypes.func.isRequired,
+  options: PropTypes.object.isRequired,
+  questionNumber: PropTypes.string.isRequired  
 }
 
 export default Options;

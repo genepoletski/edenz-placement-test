@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Questions from './Questions';
+import QuestionsLeft from '../containers/QuestionsLeft';
 
 const GrammarTest = props => {
   if (props.isFetching) {
@@ -11,11 +12,16 @@ const GrammarTest = props => {
 
   return (
     <form>
-      { props.test ? <Questions questions={props.test} /> : '' }
+      { props.test ? 
+        <Questions
+          onSetAnswer={props.onSetAnswer}
+          questions={props.test} /> 
+        : '' }
       <div>
-        <span><span>45</span> left</span>
+        <QuestionsLeft />
         <span>eye</span>
-        <button>submit</button>
+        <button
+          className='pure-button pure-button-primary'>submit</button>
       </div>
     </form>
   );

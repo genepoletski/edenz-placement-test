@@ -1,4 +1,5 @@
 import types from '../actions/actionTypes';
+import answers from './answers';
 
 const tests = (state = {}, action) => {
   switch( action.type ) {
@@ -27,6 +28,20 @@ const tests = (state = {}, action) => {
             state[ action.payload ],
             {
               isFetching: true
+            }
+          )
+        }
+      );
+    case types.SET_ANSWER:
+      return Object.assign(
+        {},
+        state,
+        {
+          [action.payload.testId]: Object.assign(
+            {},
+            state[action.payload.testId],
+            {
+              answers: answers(state[action.payload.testId].answers, action)
             }
           )
         }

@@ -10,15 +10,19 @@ const Question = props => {
       </div>
       <div>
         <p>{props.text}</p>
-        <Options questionNumber={props.number} options={props.options} />
+        <Options
+          onSetAnswer={props.onSetAnswer}
+          options={props.options}
+          questionNumber={props.number} />
       </div>
     </fieldset>
   );
 }
 
 Question.propTypes = {
-  text: PropTypes.string.isRequired,
-  options: PropTypes.object.isRequired
+  onSetAnswer: PropTypes.func.isRequired,
+  options: PropTypes.object.isRequired,
+  text: PropTypes.string.isRequired
 }
 
 export default Question;

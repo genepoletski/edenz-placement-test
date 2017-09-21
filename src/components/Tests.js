@@ -40,7 +40,13 @@ class Tests extends Component {
 
     if (props.currentTestId) {
       return (
-        <div><Test {...props.tests[props.currentTestId]} /></div>
+        <div>
+          <Test
+            onSetAnswer={(questionId, answerId)=>{
+              props.onSetAnswer(props.currentTestId, questionId, answerId);
+            }}
+            {...props.tests[props.currentTestId]} />
+        </div>
       );
     }
 
@@ -69,7 +75,8 @@ class Tests extends Component {
 
 Tests.propTypes = {
   currentTestId: PropTypes.string.isRequired,
-  isStarted: PropTypes.bool.isRequired
+  isStarted: PropTypes.bool.isRequired,
+  onSetAnswer: PropTypes.func.isRequired
 }
 
 export default Tests;

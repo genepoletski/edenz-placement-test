@@ -5,13 +5,17 @@ import Question from './Question';
 const Questions = props => {
   const questions = [];
 
-  let
-    key = 0,
-    questionId;
+  let key = 0;
   
-  for (questionId in props.questions) {
+  for (let questionId in props.questions) {
     key++;
-    questions.push( <Question key={key} number={String(key)} {...props.questions[questionId]} /> );
+    questions.push(
+      <Question
+        key={key}
+        number={String(key)}
+        onSetAnswer={(answerId)=>{props.onSetAnswer(questionId, answerId);}}
+        {...props.questions[questionId]} />
+    );
   }
 
   return (
@@ -20,6 +24,7 @@ const Questions = props => {
 }
 
 Questions.propTypes = {
+  onSetAnswer: PropTypes.func.isRequired,
   questions: PropTypes.objectOf(
     PropTypes.shape({
       text: PropTypes.string.isRequired,
