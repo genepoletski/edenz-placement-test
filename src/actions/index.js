@@ -11,9 +11,10 @@ export const addStudent = payload => {
 export const fetchTest = id => {
   return dispatch => {
     dispatch( requestTest(id) );
-    return fetch('/api/test/1')
+    return fetch('/api/test/' + String(id))
       .then(
         response => response.json(),
+        // TODO: Add error handling
         error => console.log('An error occured: ', error)
       )
       .then(
