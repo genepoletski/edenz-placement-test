@@ -10,6 +10,14 @@ const test = (state = {}, action) => {
           currentTestId: action.payload
         }
       );
+    case types.SET_VISIBILITY_FILTER:
+      return Object.assign(
+        {},
+        state,
+        {
+          visibilityFilter: action.payload
+        }
+      )
     default:
       return state;
   }

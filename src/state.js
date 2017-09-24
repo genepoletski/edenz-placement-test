@@ -1,10 +1,14 @@
 const state = {
+  test: {
+    currentTestId: '1',
+    visibilityFilter: 'QUESTIONS_SHOW_ALL'
+  },
   currentTestId: '1',
   tests: {
     1: {
       isFetching: false,
       isComplete: false,
-      questions: {
+      test: {
         1: {
           text: 'question1Text',
           options: {

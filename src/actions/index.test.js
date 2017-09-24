@@ -5,7 +5,8 @@ import {
   receiveTest,
   requestTest,
   setAnswer,
-  setCurrentTest
+  setCurrentTest,
+  setVisibilityFilter
 } from './index';
 
 describe('Action Creators:', () => {
@@ -22,15 +23,6 @@ describe('Action Creators:', () => {
         answerId: 'a'
       }
     })
-  });
-  
-  it('setCurrentTest() should create action properly', () => {
-    expect(
-      setCurrentTest('1')
-    ).toEqual({
-      type: types.SET_CURRENT_TEST,
-      payload: '1'
-    });
   });
 
   it.skip('fetchTest() should create action properly', () => {
@@ -77,6 +69,24 @@ describe('Action Creators:', () => {
       type: types.REQUEST_TEST,
       payload: '1'
     })
+  });
+
+  it('setCurrentTest() should create action properly', () => {
+    expect(
+      setCurrentTest('1')
+    ).toEqual({
+      type: types.SET_CURRENT_TEST,
+      payload: '1'
+    });
+  });
+
+  it('setVisibilityFilter() should create action properly', () => {
+    expect(
+      setVisibilityFilter('QUESTIONS_SHOW_ALL')
+    ).toEqual({
+      type: types.SET_VISIBILITY_FILTER,
+      payload: 'QUESTIONS_SHOW_ALL'
+    });
   });
 
 });

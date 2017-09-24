@@ -67,6 +67,13 @@ export const setCurrentTest = testId => {
   }
 }
 
+export const setVisibilityFilter = filter => {
+  return {
+    type: types.SET_VISIBILITY_FILTER,
+    payload: filter
+  }
+}
+
 export const submitStudent = () => {
   return {
     type: types.SUBMIT_STUDENT

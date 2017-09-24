@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import app from './reducers';
+import constants from './constants';
 import currentPageNameUpdater from './middleware/currentPageNameUpdater';
-import thunk from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
 
 const initialState = {
   pages: {
@@ -9,7 +10,8 @@ const initialState = {
   },
   test: {
     currentTestId: '',
-    isStarted: false
+    isStarted: false,
+    visibilityFilter: constants.QUESTIONS_SHOW_ALL
   },
   tests: {},
   user: {
@@ -30,7 +32,7 @@ if (process.env.NODE_ENV !== 'production') {
     composeEnhancers(
       applyMiddleware(
         currentPageNameUpdater,
-        thunk
+        thunkMiddleware
       )
     )
   )

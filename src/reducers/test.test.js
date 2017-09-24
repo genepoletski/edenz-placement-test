@@ -5,10 +5,11 @@ describe('Reducers: test', () => {
 
   let initialState;
   
-    beforeAll(() => {
+    beforeEach(() => {
       initialState = {
         currentTestId: '',
-        isStarted: false
+        isStarted: false,
+        visibilityFilter: 'QUESTIONS_SHOW_ALL'
       }
     });
 
@@ -40,7 +41,25 @@ describe('Reducers: test', () => {
     )
     .toEqual({
       currentTestId: '1',
-      isStarted: false
+      isStarted: false,
+      visibilityFilter: 'QUESTIONS_SHOW_ALL'
     })
   })
+
+  it('must set question visibility filter properly', () => {
+    expect(
+      test(
+        initialState,
+        {
+          type: types.SET_VISIBILITY_FILTER,
+          payload: 'QUESTIONS_SHOW_UNANSWERED'
+        }
+      )
+    )
+    .toEqual({
+      currentTestId: '',
+      isStarted: false,
+      visibilityFilter: 'QUESTIONS_SHOW_UNANSWERED'
+    })
+  });
 });
