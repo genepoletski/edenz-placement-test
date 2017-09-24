@@ -12,8 +12,7 @@ const Question = props => {
         <p>{props.text}</p>
         <Options
           onSetAnswer={props.onSetAnswer}
-          options={props.options}
-          questionNumber={props.number} />
+          options={props.options} />
       </div>
     </fieldset>
   );

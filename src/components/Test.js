@@ -27,18 +27,26 @@ class Test extends Component {
     }
 
     return (
-      <form>
-        <VisibilityFilter />
+      <form className='test'>
+        
         { props.questions ? 
           <Questions
             onSetAnswer={(questionId, answerId) => this.handleSetAnswer(questionId, answerId)}
             questions={props.questions} />
           : '' }
-        <div>
-          {/*<QuestionsLeft />*/}
-          <span>eye</span>
-          <button
-            className='pure-button pure-button-primary'>submit</button>
+        <div className='test__control control pure-g'>
+          <div className='pure-u-1 control__container'>
+            <div className='control__item control__item--left'>
+              {/*<QuestionsLeft />*/}
+              <span><span className='questions-left__number'>45</span>left</span>
+            </div>
+            <div className='control__item control__item--center'>
+              <VisibilityFilter />
+            </div>
+            <div className='control__item control__item--right'>
+              <button className='pure-button pure-button-primary test__sumit'>submit</button>
+            </div>
+          </div>
         </div>
       </form>
     );

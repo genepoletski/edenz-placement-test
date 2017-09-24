@@ -27,8 +27,7 @@ const Options = props => {
 
 Options.propTypes = {
   onSetAnswer: PropTypes.func.isRequired,
-  options: PropTypes.object.isRequired,
-  questionNumber: PropTypes.string.isRequired  
+  options: PropTypes.object.isRequired
 }
 
 export default Options;

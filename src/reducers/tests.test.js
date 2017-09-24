@@ -10,20 +10,21 @@ describe('Reducers: tests', () => {
       '1': {
         isFetching: false,
         isComplete: true,
-        questions: {
+        test: {
           '1': {
-            text: 'text'
+            text: 'text',
+            options: {}
           }
         }
       }
     }
   });
 
-  it('must be a function', () => {
+  it('should be a function', () => {
     expect(tests).toBeInstanceOf(Function);
   });
 
-  it('must not change state if action is unknown', () => {
+  it('should not change state if action is unknown', () => {
     expect( 
       tests(
         initialState,
@@ -36,95 +37,173 @@ describe('Reducers: tests', () => {
     .toBe(initialState)
   });
 
-  it('must receive and store test data properly', () => {
-    expect(
-      tests(
-        {
-          '1': {
-            isFetching: true,
-            something: 'else'
-          },
-          '2': {
-            isFetching: false,
-            questions: {}
-          }
-        },
-        {
-          type: types.RECEIVE_TEST,
-          payload: {
-            id: '1',
-            test: {
-              '1': {
-                'text': 'What is ...',
-                options: {
-                  'a': 'well'
-                }
-              }
-            }
-          }
-        }
-      )
-    )
-    .toEqual({
-        '1': {
-          isFetching: false,
-          something: 'else',
-          test: {
-            '1': {
-              'text': 'What is ...',
-              options: {
-                'a': 'well'
-              }
-            }
-          }
-        } ,
-        '2': {
-          isFetching: false,
-          questions: {}
-        }
-      }
-    )
-  });
-
-  it('must request data properly', () => {
-    expect(
-      tests(
-        initialState,
-        {
-          type: types.REQUEST_TEST,
-          payload: '2'
-        }
-      )
-    )
-    .toEqual({
-      '1': {
-        isFetching: false,
-        isComplete: true,
-        questions: {
-          '1': {
-            text: 'text'
-          }
-        }
-      },
-      '2': {
-        isFetching: true
-      }
-    })
-  });
-
-  it('should store selected answer properly', () => {
+  it('RECEIVE_TEST should properly notify that data received', () => {
     expect(
       tests(
         {
           '1': {
             isFetching: false,
             isComplete: true,
-            questions: {}
+            test: {
+              '1': {
+                'text': 'question text 1',
+                'options': {}
+              },
+              '2': {
+                'text': 'question text 2',
+                'option': {}
+              }
+            }
+          },
+          '2': {
+            isFetching: true,
+            test: {
+              '1': {
+                'text': 'question text 1',
+                'options': {}
+              },
+              '2': {
+                'text': 'question text 2',
+                'option': {}
+              }
+            }
+          }
+        },
+        {
+          type: types.RECEIVE_TEST,
+          payload: '2'
+        }
+      )
+    )
+    .toEqual(        {
+      '1': {
+        isFetching: false,
+        isComplete: true,
+        test: {
+          '1': {
+            'text': 'question text 1',
+            'options': {}
+          },
+          '2': {
+            'text': 'question text 2',
+            'option': {}
+          }
+        }
+      },
+      '2': {
+        isFetching: false,
+        test: {
+          '1': {
+            'text': 'question text 1',
+            'options': {}
+          },
+          '2': {
+            'text': 'question text 2',
+            'option': {}
+          }
+        }
+      }
+    })
+  });
+
+  it('REQUEST_TEST should request data properly', () => {
+    expect(
+      tests(
+        {
+          '1': {
+            'isFetching': false,
+            'isComplete': true,
+            'test': {
+              '1': {
+                'text': 'question text 1',
+                'options': {}
+              },
+              '2': {
+                'text': 'question text 2',
+                'options': {}
+              }
+            }
+          },
+          '2': {
+            'isFetching': false,
+            'test': {
+              '1': {
+                'text': 'question text 1',
+                'options': {}
+              }
+            }
+          }
+        },
+        {
+          type: types.REQUEST_TEST,
+          payload: '2'
+        }
+      )
+    )
+    .toEqual(
+      {
+        '1': {
+          'isFetching': false,
+          'isComplete': true,
+          'test': {
+            '1': {
+              'text': 'question text 1',
+              'options': {}
+            },
+            '2': {
+              'text': 'question text 2',
+              'options': {}
+            }
+          }
+        },
+        '2': {
+          'isFetching': true,
+          'test': {
+            '1': {
+              'text': 'question text 1',
+              'options': {}
+            }
+          }
+        }
+      }
+    )
+  });
+
+  it('SET_ANSWER should store selected answer properly', () => {
+    expect(
+      tests(
+        {
+          '1': {
+            isFetching: false,
+            isComplete: true,
+            test: {
+              '1': {
+                'text': 'question text 1',
+                'options': {}
+              },
+              '2': {
+                'text': 'question text 2',
+                'options': {}
+              }
+            },
+            answers: {
+              '1': 'a',
+              '2': 'b'
+            }
           },
           '2': {
             isFetching: false,
             isComplete: false,
-            questions: {},
+            test: {
+              '1': {
+                'text': 'question text 1',
+                'options': {}
+              },
+              '2': {
+                'text': 'question text 2',
+                'options': {}
+              }
+            },
             answers: {
               '1': 'a'
             }
@@ -144,18 +223,112 @@ describe('Reducers: tests', () => {
       '1': {
         isFetching: false,
         isComplete: true,
-        questions: {}
+        test: {
+          '1': {
+            'text': 'question text 1',
+            'options': {}
+          },
+          '2': {
+            'text': 'question text 2',
+            'options': {}
+          }
+        },
+        answers: {
+          '1': 'a',
+          '2': 'b'
+        }
       },
       '2': {
         isFetching: false,
         isComplete: false,
-        questions: {},
+        test: {
+          '1': {
+            'text': 'question text 1',
+            'options': {}
+          },
+          '2': {
+            'text': 'question text 2',
+            'options': {}
+          }
+        },
         answers: {
           '1': 'a',
           '2': 'b'
         }
       }
     })
+  });
+
+  it('SAVE_TEST should add essential data to received test and save it properly', () => {
+    expect(
+      tests(
+        {
+          '1': {
+            'isComplete': true,
+            'isFetching': false,
+            'test': {
+              '1': {
+                text: 'question text 1',
+                options: {}
+              },
+              '2': {
+                text: 'questions text 2',
+                options: {}
+              }
+            }
+          },
+          '2': {
+            'isFetching': true
+          }
+        },
+        {
+        type: types.SAVE_TEST,
+        payload: {
+          id: '2',
+          test: {
+            '11': {
+              text: 'question text 1',
+              options: {}
+            },
+            '12': {
+              text: 'question text 2',
+              options: {}
+            }
+          }
+        }
+      })
+    )
+    .toEqual(        {
+      '1': {
+        'isComplete': true,
+        'isFetching': false,
+        'test': {
+          '1': {
+            text: 'question text 1',
+            options: {}
+          },
+          '2': {
+            text: 'questions text 2',
+            options: {}
+          }
+        }
+      },
+      '2': {
+        'isFetching': true,
+        'test': {
+          '11': {
+            number: '1',
+            text: 'question text 1',
+            options: {}
+          },
+          '12': {
+            number: '2',
+            text: 'question text 2',
+            options: {}
+          }
+        }
+      }
+    });
   });
 
 });

@@ -26,8 +26,7 @@ const VisibilityFilter = props => {
         }
         else {
           props.handleClick(constants.QUESTIONS_SHOW_ALL);
-        }
-        
+        }     
       }}>
       {text}</span>
   );

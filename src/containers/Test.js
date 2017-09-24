@@ -37,12 +37,12 @@ const mapStateToProps = state => {
   const
     testId = state.test.currentTestId,
     test = state.tests[ testId ] || {};
-    
+
   return {
     testId,
     isFetching: test.isFetching,
     questions: getVisibleQuestions( 
-      test.test,
+      test,
       test.answers,
       state.test.visibilityFilter
      )

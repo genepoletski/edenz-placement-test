@@ -3,7 +3,50 @@ import answers from './answers';
 
 const tests = (state = {}, action) => {
   switch( action.type ) {
+
     case types.RECEIVE_TEST:
+      return Object.assign(
+        {},
+        state,
+        {
+          [action.payload]: Object.assign(
+            {},
+            state[action.payload],
+            {
+              isFetching: false
+            }
+          )
+        }
+      );
+
+    case types.REQUEST_TEST:
+      return Object.assign(
+        {},
+        state,
+        {
+          [action.payload]: Object.assign(
+            {},
+            state[action.payload],
+            {
+              isFetching: true
+            }
+          )
+        }
+      );
+
+    case types.SAVE_TEST:
+      const mappedTest = {};
+      let number = 0;
+      for (let questionId in action.payload.test) {
+        mappedTest[questionId] = Object.assign(
+          {},
+          action.payload.test[ questionId ],
+          {
+            number: String(++number)
+          }
+        );
+      }
+
       return Object.assign(
         {},
         state,
@@ -12,26 +55,12 @@ const tests = (state = {}, action) => {
             {},
             state[action.payload.id],
             {
-              isFetching: false,
-              test: action.payload.test
+              test: mappedTest
             }
           )
         }
       );
-    case types.REQUEST_TEST:
-      return Object.assign(
-        {},
-        state,
-        {
-          [action.payload]: Object.assign(
-            {},
-            state[ action.payload ],
-            {
-              isFetching: true
-            }
-          )
-        }
-      );
+
     case types.SET_ANSWER:
       return Object.assign(
         {},
@@ -46,6 +75,7 @@ const tests = (state = {}, action) => {
           )
         }
       );
+
     default:
       return state;
   }

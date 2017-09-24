@@ -8,11 +8,10 @@ const Questions = props => {
   let key = 0;
   
   for (let questionId in props.questions) {
-    key++;
     questions.push(
       <Question
-        key={key}
-        number={String(key)}
+        key={props.number}
+        number={String(props.number)}
         onSetAnswer={(answerId)=>{props.onSetAnswer(questionId, answerId);}}
         {...props.questions[questionId]} />
     );

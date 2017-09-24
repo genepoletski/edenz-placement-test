@@ -3,6 +3,7 @@ const typeNames = [
   'FETCH_TEST',
   'RECEIVE_TEST',
   'REQUEST_TEST',
+  'SAVE_TEST',
   'SET_ANSWER',
   'SET_CURRENT_PAGE',
   'SET_CURRENT_TEST',

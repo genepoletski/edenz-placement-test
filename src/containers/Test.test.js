@@ -15,7 +15,12 @@ describe('Containers: Test.js', () => {
         '1': 'a'
       };
 
-    it('should provide full list properly', () => {
+    it('should provide full list properly if has no answers yet', () => {
+      expect( getVisibleQuestions( questions, {}, constants.QUESTIONS_SHOW_ALL ) )
+      .toEqual(questions);
+    });
+
+    it('should provide full list properly if has answers', () => {
       expect( getVisibleQuestions( questions, answers, constants.QUESTIONS_SHOW_ALL ) )
       .toEqual(questions);
     });

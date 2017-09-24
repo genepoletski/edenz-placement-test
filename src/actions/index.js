@@ -19,11 +19,13 @@ export const fetchTest = id => {
       )
       .then(
         json => dispatch(
-          receiveTest({
+          saveTest({
             id,
             test: json,
           })
         )
+      )
+      .then(() => dispatch( receiveTest(id))
       )
   }
 }
@@ -39,6 +41,13 @@ export const requestTest = id => {
   return {
     type: types.REQUEST_TEST,
     payload: id
+  }
+}
+
+export const saveTest = test => {
+  return {
+    type: types.SAVE_TEST,
+    payload: test
   }
 }
 

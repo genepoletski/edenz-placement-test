@@ -4,6 +4,7 @@ import {
   fetchTest,
   receiveTest,
   requestTest,
+  saveTest,
   setAnswer,
   setCurrentTest,
   setVisibilityFilter
@@ -68,6 +69,22 @@ describe('Action Creators:', () => {
     .toEqual({
       type: types.REQUEST_TEST,
       payload: '1'
+    })
+  });
+
+  it('saveTest() should create action properly', () => {
+    expect(
+      saveTest({
+        '1': {},
+        '2': {}
+      })
+    )
+    .toEqual({
+      type: types.SAVE_TEST,
+      payload: {
+        '1': {},
+        '2': {}
+      }
     })
   });
 
