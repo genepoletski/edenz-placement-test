@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import GrammarTest from './GrammarTest';
 import ListeningTest from './ListeningTest';
+import Test from '../containers/Test';
 
 class Tests extends Component {
   componentWillReceiveProps(nextProps) {    
-    if (!nextProps.tests[ nextProps.currentTestId ] && nextProps.currentTestId) {
-      this.props.fetchTest( nextProps.currentTestId );
-    }
+    // if (!nextProps.tests[ nextProps.currentTestId ] && nextProps.currentTestId) {
+    //   this.props.fetchTest( nextProps.currentTestId );
+    // }
   }
 
   onClickTest(evt) {
@@ -24,30 +25,22 @@ class Tests extends Component {
   render() {
     const props = this.props;
     
-    let Test;
+    // let Test;
     
-    switch (props.currentTestId) {
-      case '1':
-        Test = GrammarTest;
-        break;
-      case '2':
-        Test = ListeningTest;
-        break;
-      default:
-        Test = null;
-        break;
-    }
+    // switch (props.currentTestId) {
+    //   case '1':
+    //     Test = GrammarTest;
+    //     break;
+    //   case '2':
+    //     Test = ListeningTest;
+    //     break;
+    //   default:
+    //     Test = null;
+    //     break;
+    // }
 
     if (props.currentTestId) {
-      return (
-        <div>
-          <Test
-            onSetAnswer={(questionId, answerId)=>{
-              props.onSetAnswer(props.currentTestId, questionId, answerId);
-            }}
-            {...props.tests[props.currentTestId]} />
-        </div>
-      );
+      return (<Test />);
     }
 
     return (
