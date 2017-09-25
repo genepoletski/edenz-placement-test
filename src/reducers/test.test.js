@@ -30,7 +30,7 @@ describe('Reducers: test', () => {
     .toBe(initialState)
   });
 
-  it('must set current test id properly', () => {
+  it('SET_CURRENT_TEST must set current test id properly', () => {
     expect(
       test(
         initialState,
@@ -44,9 +44,27 @@ describe('Reducers: test', () => {
       isStarted: false,
       visibilityFilter: 'QUESTIONS_SHOW_ALL'
     })
-  })
+  });
 
-  it('must set question visibility filter properly', () => {
+  it('SET_TEST_PAGE should set pagination properly', () => {
+    expect(
+      test(
+        {
+          currentTestId: '1',
+          currentTestPage: 1
+        },
+        {
+          type: types.SET_TEST_PAGE,
+          payload: 2
+        }
+      )
+    ).toEqual({
+      currentTestId: '1',
+      currentTestPage: 2
+    });
+  });
+
+  it('SET_VISIBILITY_FILTER must set question visibility filter properly', () => {
     expect(
       test(
         initialState,
@@ -62,4 +80,6 @@ describe('Reducers: test', () => {
       visibilityFilter: 'QUESTIONS_SHOW_UNANSWERED'
     })
   });
+
+
 });

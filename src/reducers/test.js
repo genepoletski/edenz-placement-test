@@ -10,6 +10,16 @@ const test = (state = {}, action) => {
           currentTestId: action.payload
         }
       );
+
+    case types.SET_TEST_PAGE:
+      return Object.assign(
+        {},
+        state,
+        {
+          currentTestPage: action.payload
+        }
+      )
+
     case types.SET_VISIBILITY_FILTER:
       return Object.assign(
         {},

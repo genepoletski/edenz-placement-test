@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import PaginatorMessage from '../containers/PaginatorMessage';
 import Questions from './Questions';
 import QuestionsLeft from '../containers/QuestionsLeft';
 import VisibilityFilter from '../containers/VisiblityFilter';
@@ -28,7 +29,7 @@ class Test extends Component {
 
     return (
       <form className='test'>
-        
+        <PaginatorMessage />
         { props.questions ? 
           <Questions
             onSetAnswer={(questionId, answerId) => this.handleSetAnswer(questionId, answerId)}
