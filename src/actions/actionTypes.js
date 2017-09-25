@@ -6,6 +6,7 @@ const typeNames = [
   'SAVE_TEST',
   'SET_ANSWER',
   'SET_CURRENT_PAGE',
+  'SET_TEST_PAGE',
   'SET_CURRENT_TEST',
   'SET_VISIBILITY_FILTER',
   'SHOW_TEST_PAGE',

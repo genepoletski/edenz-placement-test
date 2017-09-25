@@ -42,10 +42,11 @@ const mapStateToProps = state => {
     testId,
     isFetching: test.isFetching,
     questions: getVisibleQuestions( 
-      test,
+      test.test,
       test.answers,
       state.test.visibilityFilter
-     )
+     ),
+    answers: test.answers || {}
   };
 }
 

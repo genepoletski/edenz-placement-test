@@ -4,16 +4,22 @@ import Question from './Question';
 
 const Questions = props => {
   const questions = [];
-
-  let key = 0;
   
   for (let questionId in props.questions) {
+    const question = props.questions[ questionId ];
+
+    const getAnswerId = () => {
+      return props.answers[questionId] || '';
+    }
+
     questions.push(
       <Question
-        key={props.number}
-        number={String(props.number)}
+        key={question.number}
+        number={String(question.number)}
         onSetAnswer={(answerId)=>{props.onSetAnswer(questionId, answerId);}}
-        {...props.questions[questionId]} />
+        text={question.text}
+        options={question.options}
+        answerId={getAnswerId()} />
     );
   }
 

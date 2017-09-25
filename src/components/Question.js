@@ -11,8 +11,10 @@ const Question = props => {
       <div>
         <p>{props.text}</p>
         <Options
+          questionNumber={props.number}
           onSetAnswer={props.onSetAnswer}
-          options={props.options} />
+          options={props.options}
+          answerId={props.answerId} />
       </div>
     </fieldset>
   );

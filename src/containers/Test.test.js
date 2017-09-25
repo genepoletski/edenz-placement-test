@@ -3,7 +3,7 @@ import {
   getVisibleQuestions
 } from './Test.js';
 
-describe('Containers: Test.js', () => {
+describe.skip('Containers: Test.js', () => {
   describe('getVisibleQuestions()', () => {
     const
       questions = {

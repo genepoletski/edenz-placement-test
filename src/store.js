@@ -10,6 +10,8 @@ const initialState = {
   },
   test: {
     currentTestId: '',
+    currentTestPage: 1,
+    lastTestPage: 1,
     isStarted: false,
     visibilityFilter: constants.QUESTIONS_SHOW_ALL
   },

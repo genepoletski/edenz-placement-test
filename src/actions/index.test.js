@@ -7,6 +7,7 @@ import {
   saveTest,
   setAnswer,
   setCurrentTest,
+  setTestPage,
   setVisibilityFilter
 } from './index';
 
@@ -95,6 +96,15 @@ describe('Action Creators:', () => {
       type: types.SET_CURRENT_TEST,
       payload: '1'
     });
+  });
+
+  it('setTestPage() should set pagination properly', () => {
+    expect(
+      setTestPage(1)
+    ).toEqual({
+      type: types.SET_TEST_PAGE,
+      payload: 1
+    })
   });
 
   it('setVisibilityFilter() should create action properly', () => {

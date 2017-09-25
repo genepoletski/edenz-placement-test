@@ -76,6 +76,13 @@ export const setCurrentTest = testId => {
   }
 }
 
+export const setTestPage = pageNum => {
+  return {
+    type: types.SET_TEST_PAGE,
+    payload: pageNum
+  }
+}
+
 export const setVisibilityFilter = filter => {
   return {
     type: types.SET_VISIBILITY_FILTER,

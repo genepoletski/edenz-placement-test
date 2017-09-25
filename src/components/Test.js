@@ -32,7 +32,8 @@ class Test extends Component {
         { props.questions ? 
           <Questions
             onSetAnswer={(questionId, answerId) => this.handleSetAnswer(questionId, answerId)}
-            questions={props.questions} />
+            questions={props.questions}
+            answers={props.answers} />
           : '' }
         <div className='test__control control pure-g'>
           <div className='pure-u-1 control__container'>

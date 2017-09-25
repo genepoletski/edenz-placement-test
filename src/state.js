@@ -3,7 +3,6 @@ const state = {
     currentTestId: '1',
     visibilityFilter: 'QUESTIONS_SHOW_ALL'
   },
-  currentTestId: '1',
   tests: {
     1: {
       isFetching: false,

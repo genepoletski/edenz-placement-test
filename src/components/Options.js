@@ -1,22 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Option from './Option';
 
 const Options = props => {
   const options = [];
 
-  let
-    key = 0;
-
   for (let optionId in props.options) {
-    key++;
     options.push(
-      <label key={key}>
-        <input
-          name={props.questionNumber}
-          onClick={()=>{props.onSetAnswer(optionId);}}
-          type='radio'/>
-          {props.options[optionId]}
-      </label>
+      <Option
+        id={optionId}
+        isSelected={props.answerId === optionId}
+        key={optionId}
+        questionNumber={props.questionNumber}
+        onClick={()=>{props.onSetAnswer(optionId)}}
+        text={props.options[ optionId ]} />
     );
   }
 
@@ -27,7 +24,8 @@ const Options = props => {
 
 Options.propTypes = {
   onSetAnswer: PropTypes.func.isRequired,
-  options: PropTypes.object.isRequired
+  options: PropTypes.object.isRequired,
+  questionNumber: PropTypes.string.isRequired
 }
 
 export default Options;
