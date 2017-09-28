@@ -4,6 +4,10 @@ import {
   fetchTest,
   setAnswer
 } from '../actions';
+import {
+  getFirstPageQuestionNumber,
+  getLastPageQuestionNumber
+} from '../stateHelpers';
 
 import Test from '../components/Test';
 
@@ -31,7 +35,22 @@ const getVisibleQuestions = (questions = {}, answers = {}, filter) => {
     default:
       return questions;
   }
-}
+};
+
+const getTestPageQuestions = (questions = {}, currentTestPage, questionsPerPage, state) => {
+  const
+    testPageQuestions = {},
+    questionsIds = Object.keys(questions)
+    .slice(
+      getFirstPageQuestionNumber( state ) - 1,
+      getLastPageQuestionNumber( state )
+    )
+    .forEach( questionId => {
+      testPageQuestions[ questionId ] = questions[ questionId ];
+    });
+    
+  return testPageQuestions;
+};
 
 const mapStateToProps = state => {
   const
@@ -41,10 +60,11 @@ const mapStateToProps = state => {
   return {
     testId,
     isFetching: test.isFetching,
-    questions: getVisibleQuestions( 
+    questions: getTestPageQuestions(
       test.test,
-      test.answers,
-      state.test.visibilityFilter
+      state.test.currentTestPage,
+      state.test.questionsPerPage,
+      state
      ),
     answers: test.answers || {}
   };

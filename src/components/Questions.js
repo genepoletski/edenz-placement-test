@@ -6,11 +6,10 @@ const Questions = props => {
   const questions = [];
   
   for (let questionId in props.questions) {
-    const question = props.questions[ questionId ];
-
-    const getAnswerId = () => {
-      return props.answers[questionId] || '';
-    }
+    const
+      question = props.questions[ questionId ],
+      answerId = props.answers[questionId] || '',
+      answerText = question.options[ answerId ] || '';
 
     questions.push(
       <Question
@@ -19,12 +18,13 @@ const Questions = props => {
         onSetAnswer={(answerId)=>{props.onSetAnswer(questionId, answerId);}}
         text={question.text}
         options={question.options}
-        answerId={getAnswerId()} />
+        answerText={answerText}
+        answerId={answerId} />
     );
   }
 
   return (
-    <div>{questions}</div>
+    <div className='test__questions'>{questions}</div>
   );
 }
 

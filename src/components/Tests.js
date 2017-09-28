@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import GrammarTest from './GrammarTest';
-import ListeningTest from './ListeningTest';
 import Test from '../containers/Test';
 
 class Tests extends Component {
@@ -44,18 +42,18 @@ class Tests extends Component {
     }
 
     return (
-      <div>
+      <div className='tests'>
   
         <button
           id='1'
-          className='pure-u-1 pure-button pure-button-primary'
+          className='button button--primary button--narrow-stacked'
           onClick={(evt)=>{this.onClickTest(evt)}}>
           Grammar Test
         </button>
   
         <button
           id="2"
-          className='pure-u-1 pure-button pure-button-primary'
+          className='button button--primary button--narrow-stacked button--disabled'
           onClick={(evt)=>{this.onClickTest(evt)}}>
           Listening Test
         </button>

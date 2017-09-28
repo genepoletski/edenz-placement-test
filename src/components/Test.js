@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import TestControl from '../containers/TestControl';
 import PaginatorMessage from '../containers/PaginatorMessage';
 import Questions from './Questions';
-import QuestionsLeft from '../containers/QuestionsLeft';
-import VisibilityFilter from '../containers/VisiblityFilter';
 
 class Test extends Component {
   componentDidMount() {
@@ -23,7 +22,7 @@ class Test extends Component {
 
     if (props.isFetching) {
       return (
-        <div>Loading...</div>
+        <div className='test'>Loading...</div>
       );
     }
 
@@ -36,18 +35,9 @@ class Test extends Component {
             questions={props.questions}
             answers={props.answers} />
           : '' }
-        <div className='test__control control pure-g'>
-          <div className='pure-u-1 control__container'>
-            <div className='control__item control__item--left'>
-              {/*<QuestionsLeft />*/}
-              <span><span className='questions-left__number'>45</span>left</span>
-            </div>
-            <div className='control__item control__item--center'>
-              <VisibilityFilter />
-            </div>
-            <div className='control__item control__item--right'>
-              <button className='pure-button pure-button-primary test__sumit'>submit</button>
-            </div>
+        <div className='test__control control'>
+          <div className='control__container'>
+            <TestControl />
           </div>
         </div>
       </form>

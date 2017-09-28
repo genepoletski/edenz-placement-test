@@ -44,41 +44,45 @@ class Login extends Component {
   }
 
   render() {
-    let buttonClassName = "pure-u-1 pure-button pure-button-primary";
+    let buttonClassName = "button button--primary button--narrow-stacked";
 
     if ( !(this.isValidEmail(this.props.user.email) && this.isValidName(this.props.user.name) )) {
-      buttonClassName += ' pure-button-disabled';
+      buttonClassName += ' button--disabled';
     }
 
     return (
-      <form className="pure-form pure-form-stacked">
-      
-        <label>Email
-          <input
-            type="email"
-            placeholder="Enter your email"
-            onChange={evt => this.handleEmailChange(evt)}
-            value={this.state.email} />
-        </label>
-        <span className="pure-form-message">This is a required field.</span>
+      <div className='login'>
+        <form className='form'>
         
-        <label>Name
-          <input
-            type="text"
-            placeholder="Enter your name"
-            onChange={evt => this.handleNameChange(evt)}
-            value={this.state.name} />
-        </label>
-        <span className="pure-form-message">This is a required field.</span>
-  
-        <button
-          type="submit"
-          className={buttonClassName}
-          onClick={evt => this.handleUserSubmit(evt)}>
-          {this.state.isLogged ? 'Continue' : 'Login'}
-        </button>
-  
-      </form>
+          <label className='form__label--login'>Email
+            <input
+              className='form__input-text form__input-text--login'
+              type="email"
+              placeholder="Enter your email"
+              onChange={evt => this.handleEmailChange(evt)}
+              value={this.state.email} />
+          </label>
+          <span className='form__message'>This is a required field.</span>
+          
+          <label className='form__label--login'>Name
+            <input
+              className='form__input-text form__input-text--login'
+              type="text"
+              placeholder="Enter your name"
+              onChange={evt => this.handleNameChange(evt)}
+              value={this.state.name} />
+          </label>
+          <span className='form__message'>This is a required field.</span>
+    
+          <button
+            type="submit"
+            className={buttonClassName}
+            onClick={evt => this.handleUserSubmit(evt)}>
+            {this.state.isLogged ? 'Continue' : 'Login'}
+          </button>
+    
+        </form>
+      </div>
     );
   }
 }

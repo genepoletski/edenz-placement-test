@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './App.css';
-import '../node_modules/purecss/build/pure-min.css';
+// import '../node_modules/purecss/build/pure-min.css';
 
 import Login from './containers/Login';
 import Tests from './containers/Tests';
@@ -26,15 +26,11 @@ let App = props => {
   }
 
   return (
-    <div className='pure-g'>
-      <div className='pure-u-1'>
+    <div className='container'>
+      <div className='header__title'>
         <h1>EDENZ Colleges Placement Test</h1>
       </div>
-
-      <div className='pure-u'>
-        <Page />
-      </div>
-
+      <Page />
     </div>
   );
 }

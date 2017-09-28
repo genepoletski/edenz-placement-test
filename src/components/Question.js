@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import QuestionText from './QuestionText';
 import Options from './Options';
 
 const Question = props => {
   return (
-    <fieldset>
-      <div>
+    <fieldset className='test__question'>
+      <div className='question__number'>
         {props.number}
       </div>
       <div>
-        <p>{props.text}</p>
+        <QuestionText
+          text={props.text}
+          answerText={props.answerText} />
+
         <Options
           questionNumber={props.number}
           onSetAnswer={props.onSetAnswer}
@@ -21,6 +25,7 @@ const Question = props => {
 }
 
 Question.propTypes = {
+  answerId: PropTypes.string.isRequired,
   onSetAnswer: PropTypes.func.isRequired,
   options: PropTypes.object.isRequired,
   text: PropTypes.string.isRequired
