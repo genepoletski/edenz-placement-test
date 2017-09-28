@@ -193,6 +193,14 @@ body {
   text-decoration: underline;
 }
 
+.question__checkmark {
+  position: absolute;
+  padding: .125em .5em;
+  top: 0;
+  left: 0;
+  color: rgb(28, 184, 65);
+}
+
 .question__number {
   position: absolute;
   right: 0;
@@ -200,10 +208,12 @@ body {
   padding: 1px 4px;
   min-width: 1.5em;
   text-align: center;
-  background: #e0e0e0;
+  background: #666;
+  color: #fff;
 }
 
 .question__option--selected {
+  text-decoration: underline;
   background: #efefef;
 }
 

@@ -20,7 +20,7 @@ const Option = props => {
         onClick={props.onClick}
         onChange={()=>{}}
         checked={props.isSelected} />
-        {props.text}
+        &nbsp;{props.text}&nbsp;
     </label>
   );
 }
