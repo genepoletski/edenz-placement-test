@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 import Test from '../containers/Test';
 
 class Tests extends Component {
-  componentWillReceiveProps(nextProps) {    
-    // if (!nextProps.tests[ nextProps.currentTestId ] && nextProps.currentTestId) {
-    //   this.props.fetchTest( nextProps.currentTestId );
-    // }
-  }
 
   onClickTest(evt) {
     const
@@ -16,26 +11,12 @@ class Tests extends Component {
     
     evt.preventDefault();
     if (requestedTestId !== props.currentTestId && !props.isStarted) {
-      props.setCurrentTest(requestedTestId);
+      props.startTest(requestedTestId);
     }
   }
   
   render() {
     const props = this.props;
-    
-    // let Test;
-    
-    // switch (props.currentTestId) {
-    //   case '1':
-    //     Test = GrammarTest;
-    //     break;
-    //   case '2':
-    //     Test = ListeningTest;
-    //     break;
-    //   default:
-    //     Test = null;
-    //     break;
-    // }
 
     if (props.currentTestId) {
       return (<Test />);
@@ -67,7 +48,8 @@ class Tests extends Component {
 Tests.propTypes = {
   currentTestId: PropTypes.string.isRequired,
   isStarted: PropTypes.bool.isRequired,
-  onSetAnswer: PropTypes.func.isRequired
+  onSetAnswer: PropTypes.func.isRequired,
+  startTest: PropTypes.func.isRequired
 }
 
 export default Tests;

@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import constants from '../constants';
 import {
-  fetchTest,
   setAnswer,
   setCurrentTest,
-  setVisibilityFilter
+  setVisibilityFilter,
+  startTest
 } from '../actions';
 
 import Tests from '../components/Tests';
@@ -19,12 +19,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchTest: testId => dispatch( fetchTest(testId) ),
     onSetAnswer: (testId, questionId, answerId) => {dispatch(
       setAnswer(testId, questionId, answerId)
     )},
     setVisibilityFilter: filter => dispatch( setVisibilityFilter(filter) ),
-    setCurrentTest: testId => dispatch( setCurrentTest(testId) )
+    setCurrentTest: testId => dispatch( setCurrentTest(testId) ),
+    startTest: testId => dispatch( startTest( testId ) )
   }
 };
 

@@ -76,6 +76,15 @@ const tests = (state = {}, action) => {
         }
       );
 
+    case types.SET_TEST:
+      return Object.assign(
+        {},
+        state,
+        {
+          [action.payload.testId]: action.payload.test
+        }
+      )
+
     default:
       return state;
   }

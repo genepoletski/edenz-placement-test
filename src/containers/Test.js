@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import constants from '../constants';
 import {
-  fetchTest,
   setAnswer
 } from '../actions';
 import {
@@ -72,7 +71,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchTest: testId => dispatch( fetchTest(testId) ),
     handleSetAnswer: (testId, questionId, answerId) => {dispatch(
       setAnswer(testId, questionId, answerId)
     )},

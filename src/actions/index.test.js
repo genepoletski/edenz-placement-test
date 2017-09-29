@@ -8,6 +8,7 @@ import {
   saveTest,
   setAnswer,
   setCurrentTest,
+  setTest,
   setTestPage,
   setVisibilityFilter,
   startTest
@@ -128,6 +129,27 @@ describe('Action Creators:', () => {
     });
   });
 
+  it('setTest() should create action properly', () => {
+    expect(
+      setTest('1', {
+        isFetching: false,
+        test: {},
+        answers: {}
+      })
+    )
+    .toEqual({
+      type: types.SET_TEST,
+      payload: {
+        testId: '1',
+        test: {
+          isFetching: false,
+          test: {},
+          answers: {}
+        }
+      }
+    });
+  });
+
   it('startTest() should create action properly', () => {
     expect(
       startTest('1')
@@ -135,7 +157,7 @@ describe('Action Creators:', () => {
     .toEqual({
       type: types.START_TEST,
       payload: '1'
-    });
+    })
   });
 
 });

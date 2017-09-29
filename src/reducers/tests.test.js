@@ -331,4 +331,41 @@ describe('Reducers: tests', () => {
     });
   });
 
+  it('SET_TEST should create new test properly', () => {
+    expect(
+      tests(
+        {
+          '1': {
+            isFetching: false,
+            test: {},
+            answers: {}
+          }
+        },
+        {
+          type: types.SET_TEST,
+          payload: {
+            testId: '2',
+            test: {
+              isFetching: false,
+              test: {},
+              answers: {}
+            }
+          }
+        }
+      )
+    )
+    .toEqual({
+      '1': {
+        isFetching: false,
+        test: {},
+        answers: {}
+      },
+      '2': {
+        isFetching: false,
+        test: {},
+        answers: {}
+      }
+    })
+  });
+
 });

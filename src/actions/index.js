@@ -8,10 +8,10 @@ export const addStudent = payload => {
   }
 }
 
-export const fetchTest = id => {
+export const fetchTest = testId => {
   return dispatch => {
-    dispatch( requestTest(id) );
-    return fetch('/api/test/' + String(id))
+    dispatch( requestTest(testId) );
+    return fetch('/api/test/' + String(testId))
       .then(
         response => response.json(),
         // TODO: Add error handling
@@ -20,13 +20,13 @@ export const fetchTest = id => {
       .then(
         json => dispatch(
           saveTest({
-            id,
+            id: testId,
             test: json,
           })
         )
       )
-      .then(() => dispatch( receiveTest(id))
-      )
+      .then(() => dispatch( receiveTest(testId))
+    )
   }
 }
 
@@ -44,10 +44,10 @@ export const receiveTest = data => {
   }
 }
 
-export const requestTest = id => {
+export const requestTest = testId => {
   return {
     type: types.REQUEST_TEST,
-    payload: id
+    payload: testId
   }
 }
 
@@ -69,6 +69,7 @@ export const setAnswer = (testId, questionId, answerId) => {
   }
 }
 
+// Set global navigation
 export const setCurrentPage = pageName => {
   return {
     type: types.SET_CURRENT_PAGE,
@@ -76,6 +77,7 @@ export const setCurrentPage = pageName => {
   }
 }
 
+// Set current test
 export const setCurrentTest = testId => {
   return {
     type: types.SET_CURRENT_TEST,
@@ -83,6 +85,19 @@ export const setCurrentTest = testId => {
   }
 }
 
+// Create new test
+export const setTest = (testId, test) => {
+  return {
+    type: types.SET_TEST,
+    payload: {
+      testId,
+      test
+    }
+  }
+}
+
+
+// Required for pagination
 export const setTestPage = pageNum => {
   return {
     type: types.SET_TEST_PAGE,
@@ -97,7 +112,7 @@ export const setVisibilityFilter = filter => {
   }
 }
 
-export const startTest = testId => {
+export const startTest = (testId, test) => {
   return {
     type: types.START_TEST,
     payload: testId
