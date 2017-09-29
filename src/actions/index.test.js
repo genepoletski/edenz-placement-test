@@ -2,13 +2,15 @@ import types from './actionTypes';
 
 import {
   fetchTest,
+  finishTest,
   receiveTest,
   requestTest,
   saveTest,
   setAnswer,
   setCurrentTest,
   setTestPage,
-  setVisibilityFilter
+  setVisibilityFilter,
+  startTest
 } from './index';
 
 describe('Action Creators:', () => {
@@ -32,6 +34,16 @@ describe('Action Creators:', () => {
       fetchTest('1')
     ).toEqual({
       type: types.FETCH_TEST,
+      payload: '1'
+    });
+  });
+
+  it('finishTest() should create action properly', () => {
+    expect(
+      finishTest('1')
+    )
+    .toEqual({
+      type: types.FINISH_TEST,
       payload: '1'
     });
   });
@@ -113,6 +125,16 @@ describe('Action Creators:', () => {
     ).toEqual({
       type: types.SET_VISIBILITY_FILTER,
       payload: 'QUESTIONS_SHOW_ALL'
+    });
+  });
+
+  it('startTest() should create action properly', () => {
+    expect(
+      startTest('1')
+    )
+    .toEqual({
+      type: types.START_TEST,
+      payload: '1'
     });
   });
 

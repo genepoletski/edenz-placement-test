@@ -1,6 +1,7 @@
 const typeNames = [
   'ADD_STUDENT',
   'FETCH_TEST',
+  'FINISH_TEST',
   'RECEIVE_TEST',
   'REQUEST_TEST',
   'SAVE_TEST',
@@ -10,6 +11,7 @@ const typeNames = [
   'SET_CURRENT_TEST',
   'SET_VISIBILITY_FILTER',
   'SHOW_TEST_PAGE',
+  'START_TEST',
   'SUBMIT_STUDENT',
   'UPDATE_STUDENT'
 ]

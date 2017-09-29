@@ -30,6 +30,13 @@ export const fetchTest = id => {
   }
 }
 
+export const finishTest = testId => {
+  return {
+    type: types.FINISH_TEST,
+    payload: testId
+  }
+}
+
 export const receiveTest = data => {
   return {
     type: types.RECEIVE_TEST,
@@ -87,6 +94,13 @@ export const setVisibilityFilter = filter => {
   return {
     type: types.SET_VISIBILITY_FILTER,
     payload: filter
+  }
+}
+
+export const startTest = testId => {
+  return {
+    type: types.START_TEST,
+    payload: testId
   }
 }
 

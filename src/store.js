@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import app from './reducers';
 import constants from './constants';
-import currentPageNameUpdater from './middleware/currentPageNameUpdater';
 import thunkMiddleware from 'redux-thunk';
+import currentPageNameUpdater from './middleware/currentPageNameUpdater';
+import testController from './middleware/testController';
 
 const initialState = {
   pages: {
@@ -35,7 +36,8 @@ if (process.env.NODE_ENV !== 'production') {
     composeEnhancers(
       applyMiddleware(
         currentPageNameUpdater,
-        thunkMiddleware
+        thunkMiddleware,
+        testController
       )
     )
   )
