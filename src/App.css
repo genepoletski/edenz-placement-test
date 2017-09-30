@@ -15,7 +15,8 @@ body {
 }
 
 .login,
-.tests {
+.tests,
+.test-check {
   margin: 0 auto;
   max-width: 290px;
 }
@@ -25,11 +26,20 @@ body {
   max-width: 600px;
 }
 
-/* @media (max-width: 320px) {
-  .login {
-    max-width: 290px;
-  }
-} */
+/* Badge */
+.badge {
+  display: inline-block;
+  min-width: 10px;
+  padding: .175em .325em;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #666;
+  border-radius: 10px;
+}
 
 /* Buttons */
 .button {
@@ -67,8 +77,11 @@ body {
   background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
 }
 
-.button--narrow-stacked {
+.button--stacked {
   margin-top: 1em;
+}
+
+.button--wide {
   width: 100%;
 }
 
@@ -237,6 +250,32 @@ body {
 /* Header title */
 .header__title {
   text-align: center
+}
+
+/* Test Check */
+.test-check__fill {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(2, 2 ,2, .5);
+}
+
+.test-check__container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.test-check {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1em 1em 1.5em 1em;
+  background: #fff;
+  text-align: center;
 }
 
 @media (max-width: 567px) {

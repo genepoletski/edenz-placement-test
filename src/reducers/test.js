@@ -2,6 +2,24 @@ import types from '../actions/actionTypes';
 
 const test = (state = {}, action) => {
   switch( action.type ) {
+    case types.DO_AFTER_FILL:
+      return Object.assign(
+        {},
+        state,
+        {
+          isSubmitting: true
+        }
+      );
+
+    case types.DO_AFTER_RECEIVE:
+      return Object.assign(
+        {},
+        state,
+        {
+          isHaving: true
+        }
+      );
+      
     case types.SET_CURRENT_TEST:
       return Object.assign(
         {},

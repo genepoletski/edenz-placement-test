@@ -2,11 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const QuestionsLeft = props => {
+  if (props.questionsLeft !== 0) {
+    return (
+      <span>
+        You have&nbsp;
+        <span className='badge'>{props.questionsLeft}</span>
+        &nbsp;unanswered questions!
+      </span>
+    );
+  }
   return (
-    <span>
-      <span>{props.questionsLeft}</span>
-      &nbsp;left
-    </span>
+    <span>You have answered all questions.</span>
   );
 }
 

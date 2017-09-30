@@ -8,6 +8,18 @@ export const addStudent = payload => {
   }
 }
 
+export const doAfterFill = () => {
+  return {
+    type: types.DO_AFTER_FILL
+  }
+}
+
+export const doAfterReceive = () => {
+  return {
+    type: types.DO_AFTER_RECEIVE
+  }
+}
+
 export const fetchTest = testId => {
   return dispatch => {
     dispatch( requestTest(testId) );
@@ -25,7 +37,7 @@ export const fetchTest = testId => {
           })
         )
       )
-      .then(() => dispatch( receiveTest(testId))
+      .then(() => dispatch(receiveTest(testId))
     )
   }
 }
@@ -122,6 +134,12 @@ export const startTest = (testId, test) => {
 export const submitStudent = () => {
   return {
     type: types.SUBMIT_STUDENT
+  }
+}
+
+export const submitTest = () => {
+  return {
+    type: types.SUBMIT_TEST
   }
 }
 

@@ -30,6 +30,40 @@ describe('Reducers: test', () => {
     .toBe(initialState)
   });
 
+  it('DO_AFTER_FILL must set current test state properly', () => {
+    expect(
+      test(
+        initialState,
+        {
+          type: types.DO_AFTER_FILL
+        }
+      )
+    )
+    .toEqual({
+      currentTestId: '',
+      isStarted: false,
+      isSubmitting: true,
+      visibilityFilter: 'QUESTIONS_SHOW_ALL'
+    });
+  });
+
+  it('DO_AFTER_RECEIVE must set current test state properly', () => {
+    expect(
+      test(
+        initialState,
+        {
+          type: types.DO_AFTER_RECEIVE
+        }
+      )
+    )
+    .toEqual({
+      currentTestId: '',
+      isStarted: false,
+      isHaving: true,
+      visibilityFilter: 'QUESTIONS_SHOW_ALL'
+    });
+  });
+
   it('SET_CURRENT_TEST must set current test id properly', () => {
     expect(
       test(

@@ -1,5 +1,7 @@
 const typeNames = [
   'ADD_STUDENT',
+  'DO_AFTER_FILL',
+  'DO_AFTER_RECEIVE',
   'FETCH_TEST',
   'FINISH_TEST',
   'RECEIVE_TEST',
@@ -14,6 +16,7 @@ const typeNames = [
   'SHOW_TEST_PAGE',
   'START_TEST',
   'SUBMIT_STUDENT',
+  'SUBMIT_TEST',
   'UPDATE_STUDENT'
 ]
 

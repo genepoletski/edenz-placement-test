@@ -12,7 +12,9 @@ const initialState = {
   test: {
     currentTestId: '',
     currentTestPage: 1,
-    isStarted: false,
+    isChecking: false,
+    isHaving: false,
+    isSubmitting: false,
     lastTestPage: 1,
     questionsPerPage: 10,
     visibilityFilter: constants.QUESTIONS_SHOW_ALL

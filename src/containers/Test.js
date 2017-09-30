@@ -54,18 +54,20 @@ const getTestPageQuestions = (questions = {}, currentTestPage, questionsPerPage,
 const mapStateToProps = state => {
   const
     testId = state.test.currentTestId,
-    test = state.tests[ testId ] || {};
+    test = state.tests[ testId ];
 
   return {
     testId,
     isFetching: test.isFetching,
+    isHaving: state.test.isHaving,
+    isSubmitting: state.test.isSubmitting,
     questions: getTestPageQuestions(
       test.test,
       state.test.currentTestPage,
       state.test.questionsPerPage,
       state
      ),
-    answers: test.answers || {}
+    answers: test.answers
   };
 }
 

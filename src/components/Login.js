@@ -44,7 +44,7 @@ class Login extends Component {
   }
 
   render() {
-    let buttonClassName = "button button--primary button--narrow-stacked";
+    let buttonClassName = "button button--primary button--stacked button--wide";
 
     if ( !(this.isValidEmail(this.props.user.email) && this.isValidName(this.props.user.name) )) {
       buttonClassName += ' button--disabled';

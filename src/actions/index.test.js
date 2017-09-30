@@ -1,6 +1,8 @@
 import types from './actionTypes';
 
 import {
+  doAfterFill,
+  doAfterReceive,
   fetchTest,
   finishTest,
   receiveTest,
@@ -11,10 +13,29 @@ import {
   setTest,
   setTestPage,
   setVisibilityFilter,
-  startTest
+  startTest,
+  submitTest
 } from './index';
 
 describe('Action Creators:', () => {
+
+  it('doAfterFill() should create action properly', () => {
+    expect(
+      doAfterFill()
+    )
+    .toEqual({
+      type: types.DO_AFTER_FILL
+    })
+  });
+
+  it('doAfterReceive() should create action properly', () => {
+    expect(
+      doAfterReceive()
+    )
+    .toEqual({
+      type: types.DO_AFTER_RECEIVE
+    });
+  });
 
   it('setAnswer() should create action properly', () => {
     expect(
@@ -157,6 +178,15 @@ describe('Action Creators:', () => {
     .toEqual({
       type: types.START_TEST,
       payload: '1'
+    })
+  });
+
+  it('submitTest() should create action properly', () => {
+    expect(
+      submitTest()
+    )
+    .toEqual({
+      type: types.SUBMIT_TEST
     })
   });
 

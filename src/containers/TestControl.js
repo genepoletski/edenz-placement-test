@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
+  submitTest,
   setTestPage
 } from '../actions';
 import {
@@ -14,6 +15,7 @@ const Next = props => {
       className='button button--secondary'
       onClick={evt=>{
         evt.preventDefault();
+        window.scrollTo(0, 0);
         props.handleNext(props.currentTestPage, props.lastTestPage);
       }}>
       Next
@@ -27,6 +29,7 @@ const Prev = props => {
       className='button button--secondary'
       onClick={evt=>{
         evt.preventDefault();
+        window.scrollTo(0, 0);
         props.handlePrev(props.currentTestPage);
       }}>
       Prev
@@ -51,7 +54,12 @@ const TestControl = props => {
           <Prev {...props} />
         </div>
         <div className='control__item'>
-          <button className='button button--success'>Submit</button>
+          <button
+            className='button button--success'
+            onClick={evt =>{
+              evt.preventDefault();
+              props.submitTest();
+            }}>Submit</button>
         </div>
       </div>
     );
@@ -79,6 +87,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    submitTest: testId => dispatch( submitTest( testId ) ),
     handleNext: (currentTestPage, lastTestPage) => {
       if (currentTestPage !== lastTestPage) {
         dispatch(setTestPage(++currentTestPage));

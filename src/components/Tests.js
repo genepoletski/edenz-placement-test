@@ -10,9 +10,7 @@ class Tests extends Component {
       requestedTestId = evt.target.id;
     
     evt.preventDefault();
-    if (requestedTestId !== props.currentTestId && !props.isStarted) {
-      props.startTest(requestedTestId);
-    }
+    props.startTest(requestedTestId);
   }
   
   render() {
@@ -27,14 +25,14 @@ class Tests extends Component {
   
         <button
           id='1'
-          className='button button--primary button--narrow-stacked'
+          className='button button--primary button--stacked button--wide'
           onClick={(evt)=>{this.onClickTest(evt)}}>
           Grammar Test
         </button>
   
         <button
           id="2"
-          className='button button--primary button--narrow-stacked button--disabled'
+          className='button button--primary button--stacked button--wide button--disabled'
           onClick={(evt)=>{this.onClickTest(evt)}}>
           Listening Test
         </button>
@@ -47,7 +45,6 @@ class Tests extends Component {
 
 Tests.propTypes = {
   currentTestId: PropTypes.string.isRequired,
-  isStarted: PropTypes.bool.isRequired,
   onSetAnswer: PropTypes.func.isRequired,
   startTest: PropTypes.func.isRequired
 }
