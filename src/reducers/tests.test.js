@@ -37,6 +37,35 @@ describe('Reducers: tests', () => {
     .toBe(initialState)
   });
 
+  it('FINISH_TEST should properly set corresponding test status', () => {
+    expect(
+      tests({
+        '1': {
+          isFetching: false,
+          isComplete: true
+        },
+        '2': {
+          isFetching: false,
+          isComplete: false
+        }
+      },
+      {
+        type: types.FINISH_TEST,
+        payload: '2'
+      })
+    )
+    .toEqual({
+      '1': {
+        isFetching: false,
+        isComplete: true
+      },
+      '2': {
+        isFetching: false,
+        isComplete: true
+      }
+    })
+  });
+
   it('RECEIVE_TEST should properly notify that data received', () => {
     expect(
       tests(

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getUnansweredQuestionsNumber } from '../stateHelpers';
 
 const QuestionsLeft = props => {
   if (props.questionsLeft !== 0) {
@@ -17,13 +18,8 @@ const QuestionsLeft = props => {
 }
 
 const mapStateToProps = state => {
-  const
-    test = state.tests[ state.test.currentTestId ],
-    numberOfQuestions = Object.keys( test.test || {} ).length,
-    numberOfAnswers = Object.keys( test.answers || {} ).length;
-
   return {
-    questionsLeft: numberOfQuestions - numberOfAnswers
+    questionsLeft: getUnansweredQuestionsNumber(state)
   }
 }
 

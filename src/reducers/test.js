@@ -2,7 +2,22 @@ import types from '../actions/actionTypes';
 
 const test = (state = {}, action) => {
   switch( action.type ) {
-    case types.DO_AFTER_FILL:
+
+    case types.FINISH_TEST:
+      return Object.assign(
+        {},
+        state,
+        {
+          currentTestId: '',
+          currentTestPage: 1,
+          isChecking: false,
+          isHaving: false,
+          isSubmitting: false
+        }
+      );
+
+    case types.FINISH_TEST_CHECK:
+    case types.FINISH_TEST_FILL:
       return Object.assign(
         {},
         state,
@@ -45,7 +60,19 @@ const test = (state = {}, action) => {
         {
           visibilityFilter: action.payload
         }
-      )
+      );
+    
+    case types.START_TEST_CHECK:
+      return Object.assign(
+        {},
+        state,
+        {
+          isChecking: true,
+          isHaving: false,
+          isSubmitting: false
+        }
+      );
+
     default:
       return state;
   }

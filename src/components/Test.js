@@ -3,38 +3,7 @@ import PropTypes from 'prop-types';
 import TestControl from '../containers/TestControl';
 import PaginatorMessage from '../containers/PaginatorMessage';
 import Questions from './Questions';
-import QuestionsLeft from '../containers/QuestionsLeft';
-
-const TestCheck = props => {
-  return (
-    <div className='test-check__fill'>
-      <div className='test-check__container'>
-        <div className='test-check'>
-
-          <QuestionsLeft />
-
-          <p>Would you like to:</p>
-
-          <button className='button button--secondary button--wide'>
-            Check test before Submit
-          </button>
-
-          <p>or</p>
-
-          <button
-            className='button button--success button--wide'
-            onClick={evt =>{
-              evt.preventDefault();
-              props.submitTest();
-            }}>
-            Submit test anyway
-          </button>
-
-        </div>
-      </div>
-    </div>
-  );
-}
+import TestCheck from './TestCheck';
 
 const Test = props => { 
   if (props.isFetching) {
@@ -43,11 +12,11 @@ const Test = props => {
     );
   }
 
-  if (props.isHaving) {
+  if (true) {
     return (
       <form className='test'>
-        <PaginatorMessage />
-        { props.questions ? 
+        {props.isHaving ? <PaginatorMessage /> : ''}       
+        {props.questions ? 
           <Questions
             onSetAnswer={(questionId, answerId) => {
               props.handleSetAnswer(props.testId, questionId, answerId)}
@@ -60,7 +29,17 @@ const Test = props => {
             <TestControl />
           </div>
         </div>
-        {props.isSubmitting ? <TestCheck /> : ''}
+        { props.isSubmitting && props.isHaving
+          || props.isSubmitting && props.isChecking && !props.isAnswered ? (
+          <TestCheck
+            checkTest={props.checkTest}
+            isAnswered={props.isAnswered}
+            isChecking={props.isChecking}
+            isHaving={props.isHaving}
+            submitTest={props.submitTest} />
+        ) : (
+          ''
+        )}
       </form>
     );
   }
@@ -69,11 +48,15 @@ const Test = props => {
 
 Test.propTypes = {
   answers: PropTypes.object,
+  checkTest: PropTypes.func.isRequired,
   testId: PropTypes.string.isRequired,
+  isAnswered: PropTypes.bool.isRequired,
+  isChecking: PropTypes.bool.isRequired,
   isFetching: PropTypes.bool.isRequired,
   isHaving: PropTypes.bool.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
-  questions: PropTypes.object.isRequired
+  questions: PropTypes.object.isRequired,
+  submitTest: PropTypes.func.isRequired
 }
 
 export default Test;

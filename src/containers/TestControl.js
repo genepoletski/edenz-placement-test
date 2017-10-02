@@ -37,7 +37,24 @@ const Prev = props => {
   );
 }
 
-const TestControl = props => {  
+const TestControl = props => {
+  if (props.isChecking) {
+    return (
+      <div>
+        <div className='control__item control__item--right'>
+          <button
+            className='button button--success'
+            onClick={evt =>{
+              evt.preventDefault();
+              props.submitTest();
+            }}>
+            Submit
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (props.currentTestPage === 1) {
     return (
       <div>
@@ -80,6 +97,7 @@ const TestControl = props => {
 
 const mapStateToProps = state => {
   return {
+    isChecking: state.test.isChecking,
     currentTestPage: state.test.currentTestPage,
     lastTestPage: getLastTestPage( state )
   };

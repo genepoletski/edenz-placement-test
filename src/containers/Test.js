@@ -1,11 +1,16 @@
 import { connect } from 'react-redux';
 import constants from '../constants';
+
 import {
-  setAnswer
+  checkTest,
+  setAnswer,
+  submitTest
 } from '../actions';
+
 import {
   getFirstPageQuestionNumber,
-  getLastPageQuestionNumber
+  getLastPageQuestionNumber,
+  getUnansweredQuestionsNumber
 } from '../stateHelpers';
 
 import Test from '../components/Test';
@@ -51,6 +56,23 @@ const getTestPageQuestions = (questions = {}, currentTestPage, questionsPerPage,
   return testPageQuestions;
 };
 
+const getQuestions = state => {
+  const
+    testId = state.test.currentTestId,
+    test = state.tests[ testId ];
+
+  if (state.test.isChecking) {
+    return test.test;
+  }
+  
+  return getTestPageQuestions(
+    test.test,
+    state.test.currentTestPage,
+    state.test.questionsPerPage,
+    state
+   );
+}
+
 const mapStateToProps = state => {
   const
     testId = state.test.currentTestId,
@@ -58,24 +80,23 @@ const mapStateToProps = state => {
 
   return {
     testId,
+    isAnswered: Boolean(getUnansweredQuestionsNumber(state) === 0),
+    isChecking: state.test.isChecking,
     isFetching: test.isFetching,
     isHaving: state.test.isHaving,
     isSubmitting: state.test.isSubmitting,
-    questions: getTestPageQuestions(
-      test.test,
-      state.test.currentTestPage,
-      state.test.questionsPerPage,
-      state
-     ),
-    answers: test.answers
+    questions: getQuestions(state),
+    answers: test.answers,
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    checkTest: () => { dispatch( checkTest() ) },
     handleSetAnswer: (testId, questionId, answerId) => {dispatch(
       setAnswer(testId, questionId, answerId)
     )},
+    submitTest: () => dispatch( submitTest() )
   };
 }
 

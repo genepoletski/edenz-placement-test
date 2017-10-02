@@ -1,10 +1,12 @@
 import types from './actionTypes';
 
 import {
-  doAfterFill,
+  checkTest,
   doAfterReceive,
   fetchTest,
   finishTest,
+  finishTestCheck,
+  finishTestFill,
   receiveTest,
   requestTest,
   saveTest,
@@ -14,18 +16,19 @@ import {
   setTestPage,
   setVisibilityFilter,
   startTest,
+  startTestCheck,
   submitTest
 } from './index';
 
 describe('Action Creators:', () => {
 
-  it('doAfterFill() should create action properly', () => {
+  it('checkTest() should create action properly', () => {
     expect(
-      doAfterFill()
+      checkTest()
     )
     .toEqual({
-      type: types.DO_AFTER_FILL
-    })
+      type: types.CHECK_TEST
+    });
   });
 
   it('doAfterReceive() should create action properly', () => {
@@ -67,6 +70,24 @@ describe('Action Creators:', () => {
     .toEqual({
       type: types.FINISH_TEST,
       payload: '1'
+    });
+  });
+
+  it('finishTestCheck() should create action properly', () => {
+    expect(
+      finishTestCheck()
+    )
+    .toEqual({
+      type: types.FINISH_TEST_CHECK
+    })
+  });
+
+  it('finishTestFill() should create action properly', () => {
+    expect(
+      finishTestFill()
+    )
+    .toEqual({
+      type: types.FINISH_TEST_FILL
     });
   });
 
@@ -169,6 +190,15 @@ describe('Action Creators:', () => {
         }
       }
     });
+  });
+
+  it('startTestCheck() should create action properly', () => {
+    expect(
+      startTestCheck()
+    )
+    .toEqual({
+      type: types.START_TEST_CHECK
+    })
   });
 
   it('startTest() should create action properly', () => {

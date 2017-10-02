@@ -22,3 +22,12 @@ export const getLastTestPage = state => {
 export const getQuestionsNumber = state => {
   return Object.keys( (state.tests[ state.test.currentTestId ] || {}).test || {}).length;
 };
+
+export const getUnansweredQuestionsNumber = state => {
+  const
+    test = state.tests[ state.test.currentTestId ],
+    numberOfQuestions = Object.keys( test.test || {} ).length,
+    numberOfAnswers = Object.keys( test.answers || {} ).length;
+
+  return numberOfQuestions - numberOfAnswers;
+};

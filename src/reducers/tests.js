@@ -4,6 +4,21 @@ import answers from './answers';
 const tests = (state = {}, action) => {
   switch( action.type ) {
 
+    case types.FINISH_TEST:
+      return Object.assign(
+        {},
+        state,
+        {
+          [action.payload]: Object.assign(
+            {},
+            state[action.payload],
+            {
+              isComplete: true
+            }
+          )
+        }
+      );
+
     case types.RECEIVE_TEST:
       return Object.assign(
         {},

@@ -30,20 +30,72 @@ describe('Reducers: test', () => {
     .toBe(initialState)
   });
 
-  it('DO_AFTER_FILL must set current test state properly', () => {
+  it('FINISH_TEST must set current test state properly', () => {
     expect(
       test(
-        initialState,
         {
-          type: types.DO_AFTER_FILL
+          currentTestId: '1',
+          currentTestPage: 5,
+          isChecking: true,
+          isHaving: false,
+          isSubmitting: true
+        },
+        {
+          type: types.FINISH_TEST,
+          payload: '1'
         }
       )
     )
     .toEqual({
       currentTestId: '',
-      isStarted: false,
-      isSubmitting: true,
-      visibilityFilter: 'QUESTIONS_SHOW_ALL'
+      currentTestPage: 1,
+      isChecking: false,
+      isHaving: false,
+      isSubmitting: false
+    });
+  });
+
+  it('FINISH_TEST_CHECK must set current test state properly', () => {
+    expect(
+      test(
+        {
+          currentTestId: '1',
+          isChecking: true,
+          isHaving: false,
+          isSubmitting: false
+        },
+        {
+          type: types.FINISH_TEST_CHECK
+        }
+      )
+    )
+    .toEqual({
+      currentTestId: '1',
+      isChecking: true,
+      isHaving: false,
+      isSubmitting: true
+    });
+  });
+
+  it('FINISH_TEST_FILL must set current test state properly', () => {
+    expect(
+      test(
+        {
+          currentTestId: '1',
+          isChecking: false,
+          isHaving: true,
+          isSubmitting: false
+        },
+        {
+          type: types.FINISH_TEST_FILL
+        }
+      )
+    )
+    .toEqual({
+      currentTestId: '1',
+      isChecking: false,
+      isHaving: true,
+      isSubmitting: true
     });
   });
 
@@ -115,5 +167,25 @@ describe('Reducers: test', () => {
     })
   });
 
+  it('START_TEST_CHECK must set current state properly', () => {
+    expect(
+      test(
+        {
+          currentTestId: '',
+          isHaving: true,
+          isChecking: false
+        },
+        {
+          type: types.START_TEST_CHECK
+        }
+      )
+    )
+    .toEqual({
+      currentTestId: '',
+      isChecking: true,
+      isHaving: false,
+      isSubmitting: false
+    })
+  });
 
 });

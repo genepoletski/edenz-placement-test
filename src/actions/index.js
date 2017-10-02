@@ -8,9 +8,9 @@ export const addStudent = payload => {
   }
 }
 
-export const doAfterFill = () => {
+export const checkTest = () => {
   return {
-    type: types.DO_AFTER_FILL
+    type: types.CHECK_TEST
   }
 }
 
@@ -46,6 +46,18 @@ export const finishTest = testId => {
   return {
     type: types.FINISH_TEST,
     payload: testId
+  }
+}
+
+export const finishTestCheck = () => {
+  return {
+    type: types.FINISH_TEST_CHECK
+  }
+}
+
+export const finishTestFill = () => {
+  return {
+    type: types.FINISH_TEST_FILL
   }
 }
 
@@ -121,6 +133,12 @@ export const setVisibilityFilter = filter => {
   return {
     type: types.SET_VISIBILITY_FILTER,
     payload: filter
+  }
+}
+
+export const startTestCheck = () => {
+  return {
+    type: types.START_TEST_CHECK
   }
 }
 
