@@ -157,10 +157,6 @@ body {
   margin: 0 auto;
 }
 
-.control__items {
-
-}
-
 /* Forms */
 .form__input-text {
   padding: .5em .6em;
@@ -303,6 +299,11 @@ body {
   padding: 1em 1em 1.5em 1em;
   background: #fff;
   text-align: center;
+}
+
+/* Test score */
+.test-score {
+  
 }
 
 @media (max-width: 567px) {

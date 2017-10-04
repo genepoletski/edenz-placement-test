@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TestControl from '../containers/TestControl';
+import TestControlContainer from './TestControlContainer/TestControlContainer';
+import TestScore from './TestScore/TestScore';
 import PaginatorMessage from '../containers/PaginatorMessage';
 import Questions from './Questions';
-import Score from './Score';
 import TestCheck from './TestCheck';
 
 const Test = props => { 
@@ -21,7 +21,10 @@ const Test = props => {
 
   if (props.didScore) {
     return (
-      <Score correctAnswers={props.correctAnswers}  grade={props.grade} />
+      <div>
+        <TestScore correctAnswers={props.correctAnswers}  grade={props.grade} />
+        <TestControlContainer />
+      </div>
     );
   }
 
@@ -37,11 +40,7 @@ const Test = props => {
             questions={props.questions}
             answers={props.answers} />
           : '' }
-        <div className='test__control control'>
-          <div className='control__container'>
-            <TestControl />
-          </div>
-        </div>
+        <TestControlContainer />
         { props.isSubmitting && props.isHaving
           || props.isSubmitting && props.isChecking && !props.isAnswered ? (
           <TestCheck

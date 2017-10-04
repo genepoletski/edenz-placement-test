@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Score = props => {
+const TestScore = props => {
   return (
     <div>
       <p>You have {props.correctAnswers} correct answers</p>
@@ -10,9 +10,9 @@ const Score = props => {
   );
 }
 
-Score.propTypes = {
+TestScore.propTypes = {
   correctAnswers: PropTypes.number.isRequired,
   grade: PropTypes.string.isRequired
 }
 
-export default Score;
+export default TestScore;
