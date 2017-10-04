@@ -34,6 +34,22 @@ const tests = (state = {}, action) => {
         }
       );
 
+    case types.RECEIVE_TEST_SCORE:
+      return Object.assign(
+        {},
+        state,
+        {
+          [action.payload]: Object.assign(
+            {},
+            state[action.payload],
+            {
+              isScoring: false,
+              didScore: true
+            }
+          )
+        }
+      );
+
     case types.REQUEST_TEST:
       return Object.assign(
         {},
@@ -71,6 +87,37 @@ const tests = (state = {}, action) => {
             state[action.payload.id],
             {
               test: mappedTest
+            }
+          )
+        }
+      );
+
+    case types.SAVE_TEST_SCORE:
+      return Object.assign(
+        {},
+        state,
+        {
+          [action.payload.testId]: Object.assign(
+            {},
+            state[action.payload.testId],
+            {
+              grade: action.payload.grade,
+              correctAnswers: action.payload.correctAnswers
+            }
+          )
+        }
+      )
+
+    case types.SEND_TEST_ANSWERS:
+      return Object.assign(
+        {},
+        state,
+        {
+          [action.payload]: Object.assign(
+            {},
+            state[action.payload],
+            {
+              isScoring: true
             }
           )
         }

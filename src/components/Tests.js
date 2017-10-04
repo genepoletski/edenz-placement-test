@@ -16,6 +16,12 @@ class Tests extends Component {
   render() {
     const props = this.props;
 
+    let buttonClassName = 'button button--primary button--stacked button--wide tests__test-button';
+
+    if (props.isGrammarTestComplete) {
+      buttonClassName += ' button--disabled'
+    }
+
     if (props.currentTestId) {
       return (<Test />);
     }
@@ -25,9 +31,14 @@ class Tests extends Component {
   
         <button
           id='1'
-          className='button button--primary button--stacked button--wide'
+          className={buttonClassName}
           onClick={(evt)=>{this.onClickTest(evt)}}>
           Grammar Test
+          {props.isGrammarTestComplete ? (
+            <span className='test-button__checkmark'>&#10003;</span>
+          ) : (
+            ''
+          )}
         </button>
   
         <button
@@ -46,7 +57,8 @@ class Tests extends Component {
 Tests.propTypes = {
   currentTestId: PropTypes.string.isRequired,
   onSetAnswer: PropTypes.func.isRequired,
-  startTest: PropTypes.func.isRequired
+  startTest: PropTypes.func.isRequired,
+  tests: PropTypes.object
 }
 
 export default Tests;

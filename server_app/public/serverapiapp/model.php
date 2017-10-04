@@ -2,6 +2,8 @@
 
 if (!defined("SERVER_API_APP")) { die(); }
 
+include_once('./debug.php');
+
 // Read the questions file and return an array of arrays (questions and choices)
 // Each element of $displayQuestions is an array where first element is the question 
 // and second element is the choices.
@@ -46,5 +48,61 @@ function readQuestions($filename) {
 	
 	return $displayQuestions;
 }
+
+function scoreTest($testId, $studentAnswers) {
+	$answerKeys = readAnswerKeys('./answerKey.txt');
+	$answersCount = 0;
+	$correctAnswers = 0;
+	$studentAnswers = json_decode( $studentAnswers );
+
+	foreach( $answerKeys as $key => $correctAnswer ) {
+		$questionId = (string)($key + 1);
+		
+		$studentAnswer = trim( (string)$studentAnswers->{$questionId});
+		$correctAnswer = trim( (string)$correctAnswer );
+
+		$answersCount++;
+		
+		if ( $studentAnswer === $correctAnswer ) {
+	 		$correctAnswers++;
+	 	}
+	}
+
+	$percentage = round((($correctAnswers / $answersCount) * 100), 1);
+
+	$score = new stdClass();
+	$score->testId = $testId;
+	$score->grade = translateToGrade($percentage);
+	$score->correctAnswers = $correctAnswers;
+
+	return $score;
+}
+
+// Read answerkey.txt file for the answers to each of the questions.
+function readAnswerKeys($filename) {
+	$answerKeys = array();
+	
+	// If the answer key exists and is readable, read it into an array.
+	if (file_exists($filename) && is_readable($filename)) {
+		$answerKeys = file($filename);
+	}
+	
+	return $answerKeys;
+}
+
+function translateToGrade($percentage) {
+
+		if ($percentage >= 90.0) { return "A+"; }
+		else if ($percentage >= 85.0) { return "A"; }
+		else if ($percentage >= 80.0) { return "A-"; }
+		else if ($percentage >= 75.0) { return "B+"; }
+		else if ($percentage >= 70.0) { return "B"; }
+		else if ($percentage >= 65.0) { return "B-"; }
+		else if ($percentage >= 60.0) { return "C+"; }
+		else if ($percentage >= 55.0) { return "C"; }
+		else if ($percentage >= 50.0) { return "C-"; }
+		else if ($percentage >= 40.0) { return "D"; }
+		else { return "F"; }
+	}
 
 ?>

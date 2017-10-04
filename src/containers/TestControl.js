@@ -95,6 +95,12 @@ const TestControl = props => {
   }
 }
 
+TestControl.propTypes = {
+  currentTestPage: PropTypes.number,
+  isChecking: PropTypes.bool.isRequired,
+  lastTestPage: PropTypes.number
+}
+
 const mapStateToProps = state => {
   return {
     isChecking: state.test.isChecking,

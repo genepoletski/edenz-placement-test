@@ -8,8 +8,12 @@ import {
   finishTestCheck,
   finishTestFill,
   receiveTest,
+  receiveTestScore,
   requestTest,
   saveTest,
+  saveTestScore,
+  scoreTest,
+  sendTestAnswers,
   setAnswer,
   setCurrentTest,
   setTest,
@@ -38,20 +42,6 @@ describe('Action Creators:', () => {
     .toEqual({
       type: types.DO_AFTER_RECEIVE
     });
-  });
-
-  it('setAnswer() should create action properly', () => {
-    expect(
-      setAnswer('1', '1', 'a')
-    )
-    .toEqual({
-      type: types.SET_ANSWER,
-      payload: {
-        testId: '1',
-        questionId: '1',
-        answerId: 'a'
-      }
-    })
   });
 
   it.skip('fetchTest() should create action properly', () => {
@@ -118,6 +108,16 @@ describe('Action Creators:', () => {
     });  
   });
 
+  it('receiveTestScore() create action properly', () => {
+    expect(
+      receiveTestScore('1')
+    )
+    .toEqual({
+      type: types.RECEIVE_TEST_SCORE,
+      payload: '1'
+    });
+  });
+
   it('requestTest() should create action properly', () => {
     expect(
       requestTest('1')
@@ -140,6 +140,54 @@ describe('Action Creators:', () => {
       payload: {
         '1': {},
         '2': {}
+      }
+    })
+  });
+
+  it('saveTestScore() should create action properly', () => {
+    expect(
+      saveTestScore('1', 'A++', 45)
+    )
+    .toEqual({
+      type: types.SAVE_TEST_SCORE,
+      payload: {
+        testId: '1',
+        grade: 'A++',
+        correctAnswers: 45
+      }
+    });
+  });
+
+  it('scoreTest() should create action properly', () => {
+    expect(
+      scoreTest('1')
+    )
+    .toEqual({
+      type: types.SCORE_TEST,
+      payload: '1'
+    });
+  });
+
+  it('sendTestAnswers() should create action properly', () => {
+    expect(
+      sendTestAnswers('1')
+    )
+    .toEqual({
+      type: types.SEND_TEST_ANSWERS,
+      payload: '1'
+    });
+  });
+
+  it('setAnswer() should create action properly', () => {
+    expect(
+      setAnswer('1', '1', 'a')
+    )
+    .toEqual({
+      type: types.SET_ANSWER,
+      payload: {
+        testId: '1',
+        questionId: '1',
+        answerId: 'a'
       }
     })
   });

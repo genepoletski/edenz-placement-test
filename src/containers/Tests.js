@@ -13,7 +13,8 @@ const mapStateToProps = state => {
   return {
     currentTestId: state.test.currentTestId,
     isStarted: state.test.isStarted,
-    tests: state.tests
+    isGrammarTestComplete: (state.tests['1'] || {}).isComplete,
+    isLestiningTestComplete: (state.tests['2'] || state.tests['3'] || state.tests['4'] || {}).isComplete
   }
 };
 

@@ -22,7 +22,13 @@ switch ($apiPath) {
       }
     }
     else if ($apiVerb == "POST") {
-      $res = "receiving answers from client (JSON)";
+      try {
+        $studentAnswers = file_get_contents("php://input");
+        $res = json_encode( scoreTest('1', $studentAnswers) );
+      }
+      catch (Exception $e) {
+
+      }
     }
     else {
       $err = $_SERVER["SERVER_PROTOCOL"] . " 405 Method Not Allowed";

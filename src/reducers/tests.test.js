@@ -198,6 +198,68 @@ describe('Reducers: tests', () => {
     )
   });
 
+  it('RECEIVE_TEST_SCORE should change state propperly', () => {
+    expect(
+      tests(
+        {
+          '1': {
+            isComplete: true
+          },
+          '2': {
+            didScore: false,
+            isComplete: true,
+            isScoring: true
+          }
+        },
+        {
+          type: types.RECEIVE_TEST_SCORE,
+          payload: '2'
+        }
+      )
+    )
+    .toEqual({
+      '1': {
+        isComplete: true
+      },
+      '2': {
+        didScore: true,
+        isComplete: true,
+        isScoring: false
+      }
+    });
+  });
+
+  it('SEND_TEST_ANSWERS', () => {
+    expect(
+      tests(
+        {
+          '1': {
+            isComplete: true,
+            isScoring: false
+          },
+          '2': {
+            isComplete: true,
+            isScoring: false
+          }
+        },
+        {
+          type: types.SEND_TEST_ANSWERS,
+          payload: '2'
+        }
+      )
+    )
+    .toEqual({
+      '1': {
+        isComplete: true,
+        isScoring: false
+      },
+      '2': {
+        isComplete: true,
+        isScoring: true
+      }
+    });
+  });
+
   it('SET_ANSWER should store selected answer properly', () => {
     expect(
       tests(
@@ -356,6 +418,39 @@ describe('Reducers: tests', () => {
             options: {}
           }
         }
+      }
+    });
+  });
+
+  it('SAVE_TEST_SCORE should store test score propperly', () => {
+    expect(
+      tests({
+        '1': {
+          isComplete: true
+        },
+        '2': {
+          isComplete: true,
+          isScoring: true
+        }
+      },
+      {
+        type: types.SAVE_TEST_SCORE,
+        payload: {
+          testId: '2',
+          grade: 'A++',
+          correctAnswers: 45
+        }
+      })
+    )
+    .toEqual({
+      '1': {
+        isComplete: true
+      },
+      '2': {
+        isComplete: true,
+        isScoring: true,
+        grade: 'A++',
+        correctAnswers: 45
       }
     });
   });

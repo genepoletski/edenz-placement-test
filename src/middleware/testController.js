@@ -7,6 +7,8 @@ import {
   finishTestCheck,
   finishTestFill,
   requestTest,
+  scoreTest,
+  sendTest,
   setCurrentTest,
   setTest,
   startTestCheck
@@ -17,8 +19,9 @@ import {
 } from '../stateHelpers.js';
 
 const initialTestState = {
-  isComplete: false,
+  didScore: false,
   isFetching: false,
+  isScoring: false,
   test: {},
   answers: {}
 };
@@ -37,6 +40,17 @@ const testController = store => next => action => {
 
     case types.RECEIVE_TEST:
       dispatch( doAfterReceive() );
+      break;
+    
+    case types.SCORE_TEST:
+      {
+        const
+          state = store.getState(),
+          testId = state.test.currentTestId,
+          answers = state.tests[ testId ].answers;
+        
+        dispatch( sendTest(testId, answers) );
+      }
       break;
 
     case types.START_TEST:
@@ -74,7 +88,8 @@ const testController = store => next => action => {
         isSubmitting = test.isSubmitting;
       
         if (isSubmitting) {
-          dispatch( finishTest( testId ) );
+          dispatch( scoreTest() );
+          // dispatch( finishTest( testId ) );
           break;
         }
 

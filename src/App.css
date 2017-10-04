@@ -114,6 +114,25 @@ body {
   pointer-events: none;
 }
 
+/* Tests Control */
+.tests__test-button {
+  position: relative;
+}
+
+.test-button__checkmark {
+  position: absolute;
+  display: block;
+  top: 50%;
+  right: 0.75em;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #ffffff;
+  color: rgb(28, 184, 65);
+  box-sizing: border-box;
+  width: 1.25em;
+  height: 1.25em;
+}
+
 /* Control */
 .control {
   vertical-align: baseline;
@@ -132,6 +151,14 @@ body {
 
 .control__item--right {
   margin-left: 50%;
+}
+
+.control__item--wide {
+  margin: 0 auto;
+}
+
+.control__items {
+
 }
 
 /* Forms */

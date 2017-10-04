@@ -68,6 +68,13 @@ export const receiveTest = data => {
   }
 }
 
+export const receiveTestScore = testId => {
+  return {
+    type: types.RECEIVE_TEST_SCORE,
+    payload: testId
+  }
+}
+
 export const requestTest = testId => {
   return {
     type: types.REQUEST_TEST,
@@ -79,6 +86,52 @@ export const saveTest = test => {
   return {
     type: types.SAVE_TEST,
     payload: test
+  }
+}
+
+export const saveTestScore = (testId, grade, correctAnswers) => {
+  return {
+    type: types.SAVE_TEST_SCORE,
+    payload: {
+      testId,
+      grade,
+      correctAnswers
+    }
+  }
+}
+
+export const scoreTest = testId => {
+  return {
+    type: types.SCORE_TEST,
+    payload: testId
+  }
+}
+
+export const sendTest = (testId, answers) => {
+  const requestInit = {
+    method: 'POST',
+    body: JSON.stringify(answers)
+  };
+
+  return dispatch => {
+    dispatch( sendTestAnswers(testId) );
+    return fetch('/api/test/' + String(testId), requestInit)
+    .then(
+      response => response.json(),
+      // TODO: Add error handling
+      error => console.log('An error occured: ', error)
+    )
+    .then(
+      json => dispatch( saveTestScore(testId, json.grade, json.correctAnswers) )
+    )
+    .then(() => dispatch(receiveTestScore(testId)))
+  }
+}
+
+export const sendTestAnswers = testId => {
+  return {
+    type: types.SEND_TEST_ANSWERS,
+    payload: testId
   }
 }
 

@@ -61,7 +61,7 @@ const getQuestions = state => {
     testId = state.test.currentTestId,
     test = state.tests[ testId ];
 
-  if (state.test.isChecking) {
+  if (state.test.isChecking || test.isComplete) {
     return test.test;
   }
   
@@ -80,13 +80,20 @@ const mapStateToProps = state => {
 
   return {
     testId,
+
+    didScore: test.didScore,
+
     isAnswered: Boolean(getUnansweredQuestionsNumber(state) === 0),
     isChecking: state.test.isChecking,
     isFetching: test.isFetching,
     isHaving: state.test.isHaving,
+    isScoring: test.isScoring,
     isSubmitting: state.test.isSubmitting,
-    questions: getQuestions(state),
+
     answers: test.answers,
+    correctAnswers: test.correctAnswers || 0,
+    grade: test.grade || '',
+    questions: getQuestions(state),
   };
 }
 

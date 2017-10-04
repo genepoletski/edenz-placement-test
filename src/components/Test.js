@@ -3,12 +3,25 @@ import PropTypes from 'prop-types';
 import TestControl from '../containers/TestControl';
 import PaginatorMessage from '../containers/PaginatorMessage';
 import Questions from './Questions';
+import Score from './Score';
 import TestCheck from './TestCheck';
 
 const Test = props => { 
   if (props.isFetching) {
     return (
       <div className='test'>Loading...</div>
+    );
+  }
+
+  if (props.isScoring) {
+    return (
+      <div className='test'>Checking...</div>
+    );
+  }
+
+  if (props.didScore) {
+    return (
+      <Score correctAnswers={props.correctAnswers}  grade={props.grade} />
     );
   }
 
@@ -47,16 +60,24 @@ const Test = props => {
 }
 
 Test.propTypes = {
-  answers: PropTypes.object,
+  
   checkTest: PropTypes.func.isRequired,
-  testId: PropTypes.string.isRequired,
+  submitTest: PropTypes.func.isRequired,
+
+  didScore: PropTypes.bool,
+  
   isAnswered: PropTypes.bool.isRequired,
   isChecking: PropTypes.bool.isRequired,
   isFetching: PropTypes.bool.isRequired,
   isHaving: PropTypes.bool.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
+
+  answers: PropTypes.object,
+  correctAnswers: PropTypes.number.isRequired,
+  grade: PropTypes.string.isRequired,
   questions: PropTypes.object.isRequired,
-  submitTest: PropTypes.func.isRequired
+  testId: PropTypes.string.isRequired
+
 }
 
 export default Test;
