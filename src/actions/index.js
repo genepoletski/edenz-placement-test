@@ -20,6 +20,12 @@ export const doAfterReceive = () => {
   }
 }
 
+export const doBeforeSubmit = () => {
+  return {
+    type: types.DO_BEFORE_SUBMIT
+  }
+}
+
 export const fetchTest = testId => {
   return dispatch => {
     dispatch( requestTest(testId) );
@@ -37,8 +43,9 @@ export const fetchTest = testId => {
           })
         )
       )
-      .then(() => dispatch(receiveTest(testId))
-    )
+      .then(
+        () => dispatch(receiveTest(testId))
+      )
   }
 }
 
@@ -58,6 +65,12 @@ export const finishTestCheck = () => {
 export const finishTestFill = () => {
   return {
     type: types.FINISH_TEST_FILL
+  }
+}
+
+export const offerCheckTest = () => {
+  return {
+    type: types.OFFER_CHECK_TEST
   }
 }
 
@@ -189,16 +202,22 @@ export const setVisibilityFilter = filter => {
   }
 }
 
+export const startTest = testId => {
+  return {
+    type: types.START_TEST,
+    payload: testId
+  }
+}
+
 export const startTestCheck = () => {
   return {
     type: types.START_TEST_CHECK
   }
 }
 
-export const startTest = (testId, test) => {
+export const startTestFill = () => {
   return {
-    type: types.START_TEST,
-    payload: testId
+    type: types.START_TEST_FILL
   }
 }
 

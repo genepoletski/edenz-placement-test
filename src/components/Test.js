@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import TestCheck from './TestCheck/TestCheck';
 import TestControlContainer from './TestControlContainer/TestControlContainer';
 import TestScore from './TestScore/TestScore';
 import PaginatorMessage from '../containers/PaginatorMessage';
 import Questions from './Questions';
-import TestCheck from './TestCheck';
 
 const Test = props => { 
   if (props.isFetching) {
@@ -31,23 +31,23 @@ const Test = props => {
   if (true) {
     return (
       <form className='test'>
-        {props.isHaving ? <PaginatorMessage /> : ''}       
-        {props.questions ? 
-          <Questions
-            onSetAnswer={(questionId, answerId) => {
-              props.handleSetAnswer(props.testId, questionId, answerId)}
-            }
-            questions={props.questions}
-            answers={props.answers} />
-          : '' }
+        {props.isFilling ? <PaginatorMessage /> : ''}
+
+        <Questions
+          onSetAnswer={(questionId, answerId) => {
+            props.handleSetAnswer(props.testId, questionId, answerId)}
+          }
+          questions={props.questions}
+          answers={props.answers} />
+
         <TestControlContainer />
-        { props.isSubmitting && props.isHaving
-          || props.isSubmitting && props.isChecking && !props.isAnswered ? (
+        
+        {props.isSubmitting ? (
           <TestCheck
             checkTest={props.checkTest}
             isAnswered={props.isAnswered}
             isChecking={props.isChecking}
-            isHaving={props.isHaving}
+            isFilling={props.isFilling}
             submitTest={props.submitTest} />
         ) : (
           ''
@@ -68,7 +68,7 @@ Test.propTypes = {
   isAnswered: PropTypes.bool.isRequired,
   isChecking: PropTypes.bool.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  isHaving: PropTypes.bool.isRequired,
+  isFilling: PropTypes.bool.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
 
   answers: PropTypes.object,

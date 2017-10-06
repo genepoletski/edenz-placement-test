@@ -3,7 +3,8 @@ import app from './reducers';
 import constants from './constants';
 import thunkMiddleware from 'redux-thunk';
 import currentPageNameUpdater from './middleware/currentPageNameUpdater';
-import testController from './middleware/testController';
+import testController from './controllers/testController';
+// import testController from './middleware/testController';
 
 const initialState = {
   pages: {
@@ -12,11 +13,8 @@ const initialState = {
   test: {
     currentTestId: '',
     currentTestPage: 1,
-    didCheck: false,
-    didFill: false,
     isChecking: false,
     isFilling: false,
-    isHaving: false,
     isSubmitting: false,
     lastTestPage: 1,
     questionsPerPage: 10,

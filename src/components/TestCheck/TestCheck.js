@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import QuestionsLeft from '../containers/QuestionsLeft';
+import QuestionsLeft from '../../containers/QuestionsLeft';
 
 const TestCheck = props => {
   return (
@@ -18,7 +18,7 @@ const TestCheck = props => {
               evt.preventDefault();
               props.checkTest();
             }}>
-            {props.isHaving ? (
+            {props.isFilling ? (
               'Check test before Submit'
             ) : (
               'Answer the questions'
@@ -46,7 +46,7 @@ const TestCheck = props => {
 TestCheck.propTypes = {
   isAnswered: PropTypes.bool.isRequired,
   isChecking: PropTypes.bool.isRequired,
-  isHaving: PropTypes.bool.isRequired,
+  isFilling: PropTypes.bool.isRequired,
   checkTest: PropTypes.func.isRequired,
   submitTest: PropTypes.func.isRequired
 }

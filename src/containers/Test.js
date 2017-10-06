@@ -86,7 +86,7 @@ const mapStateToProps = state => {
     isAnswered: Boolean(getUnansweredQuestionsNumber(state) === 0),
     isChecking: state.test.isChecking,
     isFetching: test.isFetching,
-    isHaving: state.test.isHaving,
+    isFilling: state.test.isFilling,
     isScoring: test.isScoring,
     isSubmitting: state.test.isSubmitting,
 

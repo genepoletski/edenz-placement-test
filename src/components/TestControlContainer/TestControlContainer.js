@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 
 import {
+  offerCheckTest,
   submitTest,
   setTestPage
 } from '../../actions';
 
 import {
-  getLastTestPage
+  getLastTestPage,
+  getUnansweredQuestionsNumber
 } from '../../stateHelpers';
 
 import TestControl from './TestControl';
@@ -14,8 +16,11 @@ import TestControl from './TestControl';
 const mapStateToProps = state => {
   return {
     isChecking: state.test.isChecking,
+    isFilling: state.test.isFilling,
+    isSubmitting: state.test.isSubmitting,
     currentTestPage: state.test.currentTestPage,
-    lastTestPage: getLastTestPage( state )
+    lastTestPage: getLastTestPage( state ),
+    questionsLeft: getUnansweredQuestionsNumber( state )
   };
 }
 
@@ -30,7 +35,8 @@ const mapDispatchToProps = dispatch => {
       if (currentTestPage === 1) return;
       dispatch(setTestPage(--currentTestPage));
     },
-    handleSubmit: testId => dispatch( submitTest( testId ) )
+    offerCheckTest: () => dispatch( offerCheckTest() ),
+    submitTest: () => dispatch( submitTest() )
   };
 }
 

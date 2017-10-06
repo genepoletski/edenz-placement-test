@@ -8,10 +8,7 @@ const Submit = props => {
     <div className={className}>
       <button
         className='button button--success'
-        onClick={evt =>{
-          evt.preventDefault();
-          props.handleSubmit(); 
-        }}>
+        onClick={evt =>{props.handleSubmit(evt);}}>
         Submit
       </button>
     </div>

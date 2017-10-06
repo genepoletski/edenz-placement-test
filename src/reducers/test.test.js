@@ -30,6 +30,26 @@ describe('Reducers: test', () => {
     .toBe(initialState)
   });
 
+  it('CHECK_TEST should enable student to check and change his answers', () => {
+    expect(
+      test({
+        currentTestId: '1',
+        isChecking: false,
+        isFilling: true,
+        isSubmitting: true
+      },
+      {
+        type: types.CHECK_TEST
+      }
+    ))
+    .toEqual({
+      currentTestId: '1',
+      isChecking: true,
+      isFilling: false,
+      isSubmitting: false
+    })
+  });
+
   it('FINISH_TEST must set current test state properly', () => {
     expect(
       test(
@@ -55,14 +75,13 @@ describe('Reducers: test', () => {
     });
   });
 
-  it('FINISH_TEST_CHECK must set current test state properly', () => {
+  it('FINISH_TEST_CHECK should end test checking phase', () => {
     expect(
       test(
         {
           currentTestId: '1',
+          didCheck: false,
           isChecking: true,
-          isHaving: false,
-          isSubmitting: false
         },
         {
           type: types.FINISH_TEST_CHECK
@@ -71,20 +90,18 @@ describe('Reducers: test', () => {
     )
     .toEqual({
       currentTestId: '1',
-      isChecking: true,
-      isHaving: false,
-      isSubmitting: true
+      didCheck: true,
+      isChecking: false
     });
   });
 
-  it('FINISH_TEST_FILL must set current test state properly', () => {
+  it('FINISH_TEST_FILL should end test filling phase', () => {
     expect(
       test(
         {
           currentTestId: '1',
-          isChecking: false,
-          isHaving: true,
-          isSubmitting: false
+          didFill: false,
+          isFilling: true
         },
         {
           type: types.FINISH_TEST_FILL
@@ -93,26 +110,28 @@ describe('Reducers: test', () => {
     )
     .toEqual({
       currentTestId: '1',
-      isChecking: false,
-      isHaving: true,
-      isSubmitting: true
+      didFill: true,
+      isFilling: false
     });
   });
 
-  it('DO_AFTER_RECEIVE must set current test state properly', () => {
+  it('OFFER_CHECK_TEST should ask user to check test before submit', () => {
     expect(
-      test(
-        initialState,
-        {
-          type: types.DO_AFTER_RECEIVE
-        }
-      )
+      test({
+        currentTestId: '1',
+        isFilling: true,
+        isChecking: false,
+        isSubmitting: false
+      },
+      {
+        type: types.OFFER_CHECK_TEST
+      })
     )
     .toEqual({
-      currentTestId: '',
-      isStarted: false,
-      isHaving: true,
-      visibilityFilter: 'QUESTIONS_SHOW_ALL'
+      currentTestId: '1',
+      isFilling: true,
+      isChecking: false,
+      isSubmitting: true
     });
   });
 
@@ -167,12 +186,11 @@ describe('Reducers: test', () => {
     })
   });
 
-  it('START_TEST_CHECK must set current state properly', () => {
+  it('START_TEST_CHECK should start test check phase', () => {
     expect(
       test(
         {
-          currentTestId: '',
-          isHaving: true,
+          currentTestId: '1',
           isChecking: false
         },
         {
@@ -181,11 +199,27 @@ describe('Reducers: test', () => {
       )
     )
     .toEqual({
-      currentTestId: '',
-      isChecking: true,
-      isHaving: false,
-      isSubmitting: false
+      currentTestId: '1',
+      isChecking: true
     })
+  });
+
+  it('START_TEST_FILL should start test filling phase', () => {
+    expect(
+      test(
+        {
+          currentTestId: '1',
+          isFilling: false
+        },
+        {
+          type: types.START_TEST_FILL
+        }
+      )
+    )
+    .toEqual({
+      currentTestId: '1',
+      isFilling: true
+    });
   });
 
 });

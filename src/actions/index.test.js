@@ -2,11 +2,12 @@ import types from './actionTypes';
 
 import {
   checkTest,
-  doAfterReceive,
+  doBeforeSubmit,
   fetchTest,
   finishTest,
   finishTestCheck,
   finishTestFill,
+  offerCheckTest,
   receiveTest,
   receiveTestScore,
   requestTest,
@@ -21,6 +22,7 @@ import {
   setVisibilityFilter,
   startTest,
   startTestCheck,
+  startTestFill,
   submitTest
 } from './index';
 
@@ -35,12 +37,12 @@ describe('Action Creators:', () => {
     });
   });
 
-  it('doAfterReceive() should create action properly', () => {
+  it('doDeforeSubmit() should create action for showing warning if needed', () => {
     expect(
-      doAfterReceive()
+      doBeforeSubmit()
     )
     .toEqual({
-      type: types.DO_AFTER_RECEIVE
+      type: types.DO_BEFORE_SUBMIT
     });
   });
 
@@ -78,6 +80,15 @@ describe('Action Creators:', () => {
     )
     .toEqual({
       type: types.FINISH_TEST_FILL
+    });
+  });
+
+  it('offerCheckTest() should create action for asking user to check test', () => {
+    expect(
+      offerCheckTest()
+    )
+    .toEqual({
+      type: types.OFFER_CHECK_TEST
     });
   });
 
@@ -240,7 +251,17 @@ describe('Action Creators:', () => {
     });
   });
 
-  it('startTestCheck() should create action properly', () => {
+  it('startTest() should create action for initalizing test', () => {
+    expect(
+      startTest('1')
+    )
+    .toEqual({
+      type: types.START_TEST,
+      payload: '1'
+    })
+  });
+
+  it('startTestCheck() should create action for starting test check', () => {
     expect(
       startTestCheck()
     )
@@ -249,14 +270,13 @@ describe('Action Creators:', () => {
     })
   });
 
-  it('startTest() should create action properly', () => {
+  it('startTestFill() should create action for starting test filling', () => {
     expect(
-      startTest('1')
+      startTestFill()
     )
     .toEqual({
-      type: types.START_TEST,
-      payload: '1'
-    })
+      type: types.START_TEST_FILL
+    });
   });
 
   it('submitTest() should create action properly', () => {

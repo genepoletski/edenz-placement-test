@@ -3,6 +3,17 @@ import types from '../actions/actionTypes';
 const test = (state = {}, action) => {
   switch( action.type ) {
 
+    case types.CHECK_TEST:
+      return Object.assign(
+        {},
+        state,
+        {
+          isChecking: true,
+          isFilling: false,
+          isSubmitting: false
+        }
+      );
+
     case types.FINISH_TEST:
       return Object.assign(
         {},
@@ -17,21 +28,31 @@ const test = (state = {}, action) => {
       );
 
     case types.FINISH_TEST_CHECK:
+      return Object.assign(
+        {},
+        state,
+        {
+          didCheck: true,
+          isChecking: false
+        }
+      );
+
     case types.FINISH_TEST_FILL:
       return Object.assign(
         {},
         state,
         {
-          isSubmitting: true
+          didFill: true,
+          isFilling: false
         }
       );
-
-    case types.DO_AFTER_RECEIVE:
+    
+    case types.OFFER_CHECK_TEST:
       return Object.assign(
         {},
         state,
         {
-          isHaving: true
+          isSubmitting: true
         }
       );
       
@@ -67,9 +88,16 @@ const test = (state = {}, action) => {
         {},
         state,
         {
-          isChecking: true,
-          isHaving: false,
-          isSubmitting: false
+          isChecking: true
+        }
+      );
+
+    case types.START_TEST_FILL:
+      return Object.assign(
+        {},
+        state,
+        {
+          isFilling: true
         }
       );
 
